@@ -27,6 +27,8 @@ jobs:
           echo ${{ steps.check-diff.outputs.diff }}
 
       - name: Create a PR if diff exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.check-diff.outputs.diff != 0 }}
         run: |
           gh pr create -t "Update site info" --body "Check the diff content"
