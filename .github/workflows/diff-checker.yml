@@ -33,4 +33,4 @@ jobs:
         run: |
           git switch -c feature/diff-$(date +'%Y-%m-%d')
           git add original.md
-          gh pr create --head -t "Update site info" --body "Check the diff content"
+          gh pr create --head main -t "Update site info" --body "Check the diff content"
