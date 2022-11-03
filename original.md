@@ -1,7 +1,5 @@
 # Frequently Asked Questions (FAQ)
 
-diff
-
 ## Origins
 
 ### What is the purpose of the project?
@@ -2150,3 +2148,4 @@ see the article about
 [profiling\
 Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go's
 profiling tools.
+add diff
