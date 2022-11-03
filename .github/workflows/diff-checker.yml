@@ -29,8 +29,9 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git switch -c feature/diff-$(date +'%Y-%m-%d')
+          branch=feature/diff-$(date +'%Y-%m-%d')
+          git switch -c ${branch}
           git add original.md
           git commit --message "update diff"
-          git push
+          git push origin ${branch}
           gh pr create -B main -t "[$(date +'%Y-%m-%d')] Update site info" --body "Check the diff content"
