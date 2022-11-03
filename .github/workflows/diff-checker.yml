@@ -1,6 +1,7 @@
 name: diff checker
 
 on:
+  push:
   schedule:
     - cron: '0 23 * * *'
 
