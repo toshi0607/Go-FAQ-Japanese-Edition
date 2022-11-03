@@ -27,8 +27,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.check-diff.outputs.diff != 0 }}
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config user.name ${GITHUB_ACTOR}
+          git config user.email ${GITHUB_ACTOR}@users.noreply.github.com
           branch=feature/diff-$(date +'%Y-%m-%d')
           git switch -c ${branch}
           git add original.md
