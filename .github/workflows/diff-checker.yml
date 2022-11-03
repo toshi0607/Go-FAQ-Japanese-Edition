@@ -18,17 +18,18 @@ jobs:
         run: |
           go install github.com/suntong/html2md@latest
           curl https://go.dev/doc/faq | html2md -i -G | sed -n -e 106,2255p > original.md
+          echo "add diff" >> original.md
           echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
 
       - name: Create a PR if diff exists
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
         if: ${{ steps.check-diff.outputs.diff != 0 }}
         run: |
           git switch -c feature/diff-$(date +'%Y-%m-%d')
           git add original.md
-          git config user.name github-actions[bot]
-          git config user.email github-actions[bot]@users.noreply.github.com
           git commit --message "update diff"
           git push
           gh pr create -B main -t "[$(date +'%Y-%m-%d')] Update site info" --body "Check the diff content"
