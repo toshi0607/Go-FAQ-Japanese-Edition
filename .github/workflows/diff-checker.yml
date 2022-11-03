@@ -1,0 +1,35 @@
+name: diff checker
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+
+      - name: Check diff
+        id: check-diff
+        run: |
+          go install github.com/suntong/html2md@latest
+          curl https://go.dev/doc/faq | html2md -i -G | sed -n -e 106,2255p > original.md
+          echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
+
+      - name: Create a PR if diff exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ steps.check-diff.outputs.diff != 0 }}
+        run: |
+          git config user.name ${GITHUB_ACTOR}
+          git config user.email ${GITHUB_ACTOR}@users.noreply.github.com
+          branch=feature/diff-$(date +'%Y-%m-%d')
+          git switch -c ${branch}
+          git add original.md
+          git commit --message "update diff"
+          git push origin ${branch}
+          gh pr create -B main -t "[$(date +'%Y-%m-%d')] Update site info" --body "Check the diff content"
