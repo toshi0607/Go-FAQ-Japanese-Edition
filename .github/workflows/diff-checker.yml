@@ -33,5 +33,7 @@ jobs:
         run: |
           git switch -c feature/diff-$(date +'%Y-%m-%d')
           git add original.md
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git commit --message "add diff"
           gh pr create --head main -t "Update site info" --body "Check the diff content"
