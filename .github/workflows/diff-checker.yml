@@ -18,14 +18,15 @@ jobs:
           go-version: 1.19
 
       - name: Check diff
+        id: check-diff
         run: |
           go install github.com/suntong/html2md@latest
           curl https://go.dev/doc/faq | html2md -i -G | sed -n -e 106,2255p > original.md
           echo "add diff" >> original.md
-          echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_STATE
-          echo ${{ env.diff }}
+          echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
+          echo ${{ steps.check-diff.outputs.diff }}
 
       - name: Create a PR if diff exists
-        if: ${{ env.diff != 0 }}
+        if: ${{ steps.check-diff.outputs.diff != 0 }}
         run: |
           gh pr create -t "Update site info" --body "Check the diff content"
