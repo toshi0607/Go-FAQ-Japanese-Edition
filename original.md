@@ -1,7 +1,5 @@
 # Frequently Asked Questions (FAQ)
 
-diff
-
 ## Origins
 
 ### What is the purpose of the project?
