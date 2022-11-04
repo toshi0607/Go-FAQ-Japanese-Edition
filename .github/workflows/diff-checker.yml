@@ -1,6 +1,7 @@
 name: diff checker
 
 on:
+  push:
   schedule:
     - cron: '0 23 * * *'
 
@@ -17,7 +18,7 @@ jobs:
         id: check-diff
         run: |
           go install github.com/suntong/html2md@latest
-          curl https://go.dev/doc/faq | html2md -i -G | sed -n -e 106,2255p > original.md
+          curl https://go.dev/doc/faq | sponge | html2md -i -G | sed -n -e 106,2255p > original.md
           echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
 
       - name: Create a PR if diff exists
