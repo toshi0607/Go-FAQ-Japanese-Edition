@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-go@v3
 
       - name: Install html2md
-        id: check-diff
         run: |
           go install github.com/suntong/html2md@latest
 
