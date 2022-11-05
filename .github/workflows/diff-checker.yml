@@ -14,18 +14,16 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
 
-      - name: Install html2md
-        run: |
-          GOBIN=$PWD/bin go install github.com/suntong/html2md@latest
-          ./bin/html2md -h
-
       - name: Check diff
         id: check-diff
         run: |
-          curl -o tmp-original.html https://go.dev/doc/faq
-          # cat tmp-original.html
-          cat tmp-original.html | { ./bin/html2md -i -G; cat >/dev/null; }
-          cat tmp-original.html | { ./bin/html2md -i -G; cat >/dev/null; } | sed -n -e 106,2255p > original.md
+          GOBIN=$PWD/bin go install github.com/suntong/html2md@latest
+          # ./bin/html2md -h
+          curl https://go.dev/doc/faq | ./bin/html2md -i -G | sed -n -e 106,2255p > original.md
+          # curl -o tmp-original.html https://go.dev/doc/faq
+          # # cat tmp-original.html
+          # cat tmp-original.html | { ./bin/html2md -i -G; cat >/dev/null; }
+          # cat tmp-original.html | { ./bin/html2md -i -G; cat >/dev/null; } | sed -n -e 106,2255p > original.md
           echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
 
       - name: Create a PR if diff exists
