@@ -18,7 +18,8 @@ jobs:
         id: check-diff
         run: |
           go install github.com/suntong/html2md@latest
-          curl -N https://go.dev/doc/faq | html2md -i -G | sed -n -e 106,2255p > original.md
+          curl -o tmp-original.html https://go.dev/doc/faq
+          cat tmp-original.html | html2md -i -G | sed -n -e 106,2255p > original.md
           echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
 
       - name: Create a PR if diff exists
