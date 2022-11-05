@@ -16,10 +16,8 @@ jobs:
 
       - name: Install html2md
         run: |
-          go get github.com/suntong/html2md
-          echo $GOBIN
-          ls ./bin
-          which html2md
+          GOBIN=$PWD/bin go install github.com/suntong/html2md@latest
+          ./bin/html2md -h
 
       - name: Check diff
         id: check-diff
