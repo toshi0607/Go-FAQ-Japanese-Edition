@@ -17,6 +17,7 @@ jobs:
       - name: Install html2md
         run: |
           go install github.com/suntong/html2md@latest
+          which html2md
 
       - name: Check diff
         id: check-diff
