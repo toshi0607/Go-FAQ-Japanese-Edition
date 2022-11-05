@@ -16,8 +16,8 @@ jobs:
       - name: Check diff
         id: check-diff
         run: |
-          go install github.com/suntong/html2md@latest
-          curl https://go.dev/doc/faq | html2md -i -G | sed -n -e 106,2255p > original.md
+          GOBIN=${PWD}/bin go install github.com/suntong/html2md@latest
+          curl https://go.dev/doc/faq | ./bin/html2md | sed -n -e 106,2255p > original.md
           echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
 
       - name: Create a PR if diff exists
@@ -27,7 +27,7 @@ jobs:
         run: |
           git config user.name ${GITHUB_ACTOR}
           git config user.email ${GITHUB_ACTOR}@users.noreply.github.com
-          branch=feature/diff-$(date +'%Y-%m-%d')
+          branch=feature/diff-$(TZ=JST-9 date +'%Y-%m-%d')
           git switch -c ${branch}
           git add original.md
           git commit --message "update diff"
