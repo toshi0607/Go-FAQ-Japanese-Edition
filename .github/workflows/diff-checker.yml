@@ -22,11 +22,10 @@ jobs:
       - name: Check diff
         id: check-diff
         run: |
-          html2md -h
           curl -o tmp-original.html https://go.dev/doc/faq
           # cat tmp-original.html
-          cat tmp-original.html | { html2md -i -G; cat >/dev/null; }
-          cat tmp-original.html | { html2md -i -G; cat >/dev/null; } | sed -n -e 106,2255p > original.md
+          cat tmp-original.html | { ./bin/html2md -i -G; cat >/dev/null; }
+          cat tmp-original.html | { ./bin/html2md -i -G; cat >/dev/null; } | sed -n -e 106,2255p > original.md
           echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
 
       - name: Create a PR if diff exists
