@@ -281,7 +281,7 @@ type Fooer interface {
 }
 ```
 
-型が`Fooer`であるためには、`ImplementsFooerメソッド`を実装し、[go doc](https://pkg.go.dev/cmd/go#hdr-Show_documentation_for_package_or_symbol)の出力でその事実を明確に文書化し、アナウンスする必要があります。
+型が`Fooer`であるためには、`ImplementsFooer`メソッドを実装し、[go doc](https://pkg.go.dev/cmd/go#hdr-Show_documentation_for_package_or_symbol)の出力でその事実を明確に文書化し、アナウンスする必要があります。
 
 ```go
 type Bar struct{}
