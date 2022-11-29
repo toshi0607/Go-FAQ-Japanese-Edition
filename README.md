@@ -469,6 +469,6 @@ Go 1では、以前のリリースとは異なり構造体と配列に対して�
 
 Goで書かれた`godoc`というプログラムがあります。これはソースコードからパッケージのドキュメントを抽出し、宣言やファイルなどへのリンクを持つウェブページとして提供するプログラムです。インスタンスは[pkg.go.dev/std](https://pkg.go.dev/std)で動いています。実際、`godoc`は[go.dev](https://go.dev/)にあるサイト全体を実装しています。
 
-godocインスタンスは、表示するプログラム中のシンボルのリッチでインタラクティブな静的解析を提供するように設定することができます。詳細は[ここ](https://go.dev/lib/godoc/analysis/help)に記載されています。
+`godoc`インスタンスは、表示するプログラム中のシンボルのリッチでインタラクティブな静的解析を提供するように設定することができます。詳細は[ここ](https://go.dev/lib/godoc/analysis/help)に記載されています。
 
 コマンドラインからドキュメントにアクセスするために、[go](https://pkg.go.dev/cmd/go)ツールには[doc](https://pkg.go.dev/cmd/go#hdr-Show_documentation_for_package_or_symbol)サブコマンドがあり、同じ情報へのテキストインターフェイスを提供します。
