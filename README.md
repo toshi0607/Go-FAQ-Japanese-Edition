@@ -58,6 +58,7 @@
     - [ライブラリのドキュメントはどのように作成されている？](#ライブラリのドキュメントはどのように作成されている)
     - [Goのプログラミングスタイルガイドはある？](#goのプログラミングスタイルガイドはある)
     - [Goライブラリにパッチを出すにはどうしたらいい？](#goライブラリにパッチを出すにはどうしたらいい)
+    - [なぜ 「go get」はリポジトリをクローンするときHTTPSを使用する？](#なぜ-go-getはリポジトリをクローンするときhttpsを使用する)
 
 ## 起源
 
@@ -488,3 +489,22 @@ Goは、名前付け、レイアウト、ファイル構成に関する意思決
 ライブラリのソースは、リポジトリの`src`ディレクトリにあります。重要な変更を加えたい場合は、着手する前にメーリングリストでの議論をお願いします。
 
 進め方の詳細については、ドキュメント[Contributing to the Go project](https://go.dev/doc/contribute)を参照してください。
+
+### なぜ 「go get」はリポジトリをクローンするときHTTPSを使用する？
+
+企業では、標準的なTCPポート80（HTTP）と 443（HTTPS）のみの発信トラフィックを許可し、TCPポート9418（git）やTCPポート22（SSH）など、その他のポートでの発信トラフィックをブロックしていることがよくあります。HTTPの代わりにHTTPSを使用する場合、`git`はデフォルトで証明書の検証を実施し、中間者攻撃、盗聴、改ざんに対する防御を提供します。そのため、`go get`コマンドは安全のためにHTTPSを使用します。
+
+`git`は、HTTPSで認証するように設定することも、HTTPSの代わりにSSHを使うように設定することもできます。HTTPSで認証するには、gitが参照する`$HOME/.netrc`ファイルに一行を追加します。
+
+```shell
+machine github.com login USERNAME password APIKEY
+```
+
+GitHubアカウントの場合、パスワードは[個人用アクセストークン](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)にすることができます。
+
+`git`では、指定したプレフィックスにマッチするURLに対してHTTPSではなくSSHを使うように設定することもできます。たとえば、GitHubへのアクセスにSSHを使うには、次の行を`~/.gitconfig`に追加します。
+
+```shell
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+```
