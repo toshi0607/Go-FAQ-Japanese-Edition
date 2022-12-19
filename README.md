@@ -794,7 +794,7 @@ Goに`?:`がないのは、この演算があまりに頻繁に使われて、�
 
 <dt>Java</dt>
 <dd>
-Javaでは、コンパイラはコンパイル時にジェネリック型をチェックしますが、実行時にはその型を削除します。これは<a href="https://en.wikipedia.org/wiki/Generics_in_Java#Problems_with_type_erasure">型消去</a>として知られています。たとえば、コンパイル時に<code>List<Integer></code>として知られていたJavaの型は、実行時には非ジェネリック型の<code>List</code>になります。これは、たとえばJava形式の型リフレクションを使うとき、<code>List<Integer></code>型の値と<code>List<Float></code>型の値とを区別することが不可能であることを意味します。Goでは、ジェネリック型のためのリフレクション情報は、コンパイル時の完全な型情報を含んでいます。
+Javaでは、コンパイラはコンパイル時にジェネリック型をチェックしますが、実行時にはその型を削除します。これは<a href="https://en.wikipedia.org/wiki/Generics_in_Java#Problems_with_type_erasure">型消去</a>として知られています。たとえば、コンパイル時に<code>List\<Integer\></code>として知られていたJavaの型は、実行時には非ジェネリック型の<code>List</code>になります。これは、たとえばJava形式の型リフレクションを使うとき、<code>List\<Integer\></code>型の値と<code>List\<Float\></code>型の値とを区別することが不可能であることを意味します。Goでは、ジェネリック型のためのリフレクション情報は、コンパイル時の完全な型情報を含んでいます。
 </dd>
 
 <dt>C++</dt>
