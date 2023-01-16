@@ -201,7 +201,9 @@ Goのパッケージシステムの重要な特性は、一般に任意の文字
 
 ```console
 $ go get github.com/4ad/doozer // パッケージを取得するシェルコマンド
+```
 
+```go
 import "github.com/4ad/doozer" // doozerクライアントのimport文
 
 var client doozer.Conn         // クライアントのパッケージ利用
