@@ -1,3 +1,6 @@
+1. [Documentation](/doc/)
+2. [Frequently Asked Questions (FAQ)](/doc/faq)
+
 # Frequently Asked Questions (FAQ)
 
 ## Origins
@@ -2145,6 +2148,3 @@ considerable control over memory layout and allocation, much more than
 is typical in garbage-collected languages. A careful programmer can reduce
 the garbage collection overhead dramatically by using the language well;
 see the article about
-[profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go's
-profiling tools.
