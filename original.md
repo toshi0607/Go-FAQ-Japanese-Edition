@@ -1,3 +1,6 @@
+1. [Documentation](/doc/)
+2. [Frequently Asked Questions (FAQ)](/doc/faq)
+
 # Frequently Asked Questions (FAQ)
 
 ## Origins
@@ -1819,6 +1822,12 @@ is described [here](/s/go15bootstrap) and
 and uses a custom loader, also written in Go but
 based on the Plan 9 loader, to generate ELF/Mach-O/PE binaries.
 
+The `Gccgo` compiler is a front end written in C++
+with a recursive descent parser coupled to the
+standard GCC back end. An experimental
+[LLVM back end](https://go.googlesource.com/gollvm/) is
+using the same front end.
+
 At the beginning of the project we considered using LLVM for
 `gc` but decided it was too large and slow to meet
 our performance goals.
@@ -1826,12 +1835,6 @@ More important in retrospect, starting with LLVM would have made it
 harder to introduce some of the ABI and related changes, such as
 stack management, that Go requires but are not part of the standard
 C setup.
-A new [LLVM implementation](https://go.googlesource.com/gollvm/)
-is starting to come together now, however.
-
-The `Gccgo` compiler is a front end written in C++
-with a recursive descent parser coupled to the
-standard GCC back end.
 
 Go turned out to be a fine language in which to implement a Go compiler,
 although that was not its original goal.
@@ -2145,6 +2148,3 @@ considerable control over memory layout and allocation, much more than
 is typical in garbage-collected languages. A careful programmer can reduce
 the garbage collection overhead dramatically by using the language well;
 see the article about
-[profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go's
-profiling tools.
