@@ -1,3 +1,28 @@
+- [Release Notes](/doc/devel/release)
+
+- [Packages](https://pkg.go.dev)
+- Community _navigate\_next_
+
+
+  _navigate\_before_ Community
+
+
+
+- [Recorded Talks](/talks/)
+- [Meetups\
+   _open\_in\_new_](https://www.meetup.com/pro/go)
+- [Conferences\
+   _open\_in\_new_](https://github.com/golang/go/wiki/Conferences)
+- [Go blog](/blog)
+- [Go project](/help)
+- Get connected
+
+  [![](/images/logos/social/google-groups.svg)](https://groups.google.com/g/golang-nuts)[![](/images/logos/social/github.svg)](https://github.com/golang)[![](/images/logos/social/twitter.svg)](https://twitter.com/golang)[![](/images/logos/social/reddit.svg)](https://www.reddit.com/r/golang/)[![](/images/logos/social/slack.svg)](https://invite.slack.golangbridge.org/)[![](/images/logos/social/stack-overflow.svg)](https://stackoverflow.com/tags/go)
+
+
+1. [Documentation](/doc/)
+2. [Frequently Asked Questions (FAQ)](/doc/faq)
+
 # Frequently Asked Questions (FAQ)
 
 ## Origins
@@ -1819,6 +1844,12 @@ is described [here](/s/go15bootstrap) and
 and uses a custom loader, also written in Go but
 based on the Plan 9 loader, to generate ELF/Mach-O/PE binaries.
 
+The `Gccgo` compiler is a front end written in C++
+with a recursive descent parser coupled to the
+standard GCC back end. An experimental
+[LLVM back end](https://go.googlesource.com/gollvm/) is
+using the same front end.
+
 At the beginning of the project we considered using LLVM for
 `gc` but decided it was too large and slow to meet
 our performance goals.
@@ -1826,12 +1857,6 @@ More important in retrospect, starting with LLVM would have made it
 harder to introduce some of the ABI and related changes, such as
 stack management, that Go requires but are not part of the standard
 C setup.
-A new [LLVM implementation](https://go.googlesource.com/gollvm/)
-is starting to come together now, however.
-
-The `Gccgo` compiler is a front end written in C++
-with a recursive descent parser coupled to the
-standard GCC back end.
 
 Go turned out to be a fine language in which to implement a Go compiler,
 although that was not its original goal.
@@ -2123,28 +2148,3 @@ like Rust that bring new ideas to the problem of managing
 resources is misguided; we encourage this work and are excited to see
 how it evolves.
 But Go takes a more traditional approach by addressing
-object lifetimes through
-garbage collection, and garbage collection alone.
-
-The current implementation is a mark-and-sweep collector.
-If the machine is a multiprocessor, the collector runs on a separate CPU
-core in parallel with the main program.
-Major work on the collector in recent years has reduced pause times
-often to the sub-millisecond range, even for large heaps,
-all but eliminating one of the major objections to garbage collection
-in networked servers.
-Work continues to refine the algorithm, reduce overhead and
-latency further, and to explore new approaches.
-The 2018
-[ISMM keynote](https://blog.golang.org/ismmkeynote)
-by Rick Hudson of the Go team
-describes the progress so far and suggests some future approaches.
-
-On the topic of performance, keep in mind that Go gives the programmer
-considerable control over memory layout and allocation, much more than
-is typical in garbage-collected languages. A careful programmer can reduce
-the garbage collection overhead dramatically by using the language well;
-see the article about
-[profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go's
-profiling tools.
