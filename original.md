@@ -1,3 +1,28 @@
+- [Release Notes](/doc/devel/release)
+
+- [Packages](https://pkg.go.dev)
+- Community _navigate\_next_
+
+
+  _navigate\_before_ Community
+
+
+
+- [Recorded Talks](/talks/)
+- [Meetups\
+   _open\_in\_new_](https://www.meetup.com/pro/go)
+- [Conferences\
+   _open\_in\_new_](https://github.com/golang/go/wiki/Conferences)
+- [Go blog](/blog)
+- [Go project](/help)
+- Get connected
+
+  [![](/images/logos/social/google-groups.svg)](https://groups.google.com/g/golang-nuts)[![](/images/logos/social/github.svg)](https://github.com/golang)[![](/images/logos/social/twitter.svg)](https://twitter.com/golang)[![](/images/logos/social/reddit.svg)](https://www.reddit.com/r/golang/)[![](/images/logos/social/slack.svg)](https://invite.slack.golangbridge.org/)[![](/images/logos/social/stack-overflow.svg)](https://stackoverflow.com/tags/go)
+
+
+1. [Documentation](/doc/)
+2. [Frequently Asked Questions (FAQ)](/doc/faq)
+
 # Frequently Asked Questions (FAQ)
 
 ## Origins
@@ -67,7 +92,7 @@ The mascot and logo were designed by
 [Renée French](https://reneefrench.blogspot.com), who also designed
 [Glenda](https://9p.io/plan9/glenda.html),
 the Plan 9 bunny.
-A [blog post](https://blog.golang.org/gopher)
+A [blog post](/blog/gopher)
 about the gopher explains how it was
 derived from one she used for a [WFMU](https://wfmu.org/)
 T-shirt design some years ago.
@@ -95,7 +120,7 @@ For instance, the Twitter tag for the language is "#golang".
 The language's name is just plain Go, regardless.
 
 A side note: Although the
-[official logo](https://blog.golang.org/go-brand)
+[official logo](/blog/go-brand)
 has two capital letters, the language name is written Go, not GO.
 
 ### Why did you create a new language?
@@ -179,13 +204,7 @@ easier to understand what happens when things combine.
 ### Is Google using Go internally?
 
 Yes. Go is used widely in production inside Google.
-One easy example is the server behind
-[golang.org](https://golang.org).
-It's just the [`godoc`](/cmd/godoc)
-document server running in a production configuration on
-[Google App Engine](https://developers.google.com/appengine/).
-
-A more significant instance is Google's download server, `dl.google.com`,
+One example is Google's download server, `dl.google.com`,
 which delivers Chrome binaries and other large installables such as `apt-get`
 packages.
 
@@ -387,7 +406,7 @@ to handle catastrophe but requires no extra control structures and,
 when used well, can result in clean error-handling code.
 
 See the [Defer, Panic, and Recover](/doc/articles/defer_panic_recover.html) article for details.
-Also, the [Errors are values](https://blog.golang.org/errors-are-values) blog post
+Also, the [Errors are values](/blog/errors-are-values) blog post
 describes one approach to handling errors cleanly in Go by demonstrating that,
 since errors are just values, the full power of Go can be deployed in error handling.
 
@@ -912,7 +931,7 @@ without complaint from the compiler because the ideal number `2`
 can be converted safely and accurately
 to a `float64` for the call to `math.Sqrt`.
 
-A blog post titled [Constants](https://blog.golang.org/constants)
+A blog post titled [Constants](/blog/constants)
 explores this topic in more detail.
 
 ### Why are maps built in?
@@ -1276,7 +1295,7 @@ That approach is summarized by the original
 Do not communicate by sharing memory. Instead, share memory by communicating.
 
 See the [Share Memory By Communicating](/doc/codewalk/sharemem/) code walk
-and its [associated article](https://blog.golang.org/2010/07/share-memory-by-communicating.html) for a detailed discussion of this concept.
+and its [associated article](/blog/share-memory-by-communicating) for a detailed discussion of this concept.
 
 Large concurrent programs are likely to borrow from both these toolkits.
 
@@ -1306,7 +1325,7 @@ to speed it up.
 
 For more detail on this topic see the talk entitled
 [Concurrency\
-is not Parallelism](https://blog.golang.org/2013/01/concurrency-is-not-parallelism.html).
+is not Parallelism](/blog/concurrency-is-not-parallelism).
 
 ### How can I control the number of CPUs?
 
@@ -1819,6 +1838,12 @@ is described [here](/s/go15bootstrap) and
 and uses a custom loader, also written in Go but
 based on the Plan 9 loader, to generate ELF/Mach-O/PE binaries.
 
+The `Gccgo` compiler is a front end written in C++
+with a recursive descent parser coupled to the
+standard GCC back end. An experimental
+[LLVM back end](https://go.googlesource.com/gollvm/) is
+using the same front end.
+
 At the beginning of the project we considered using LLVM for
 `gc` but decided it was too large and slow to meet
 our performance goals.
@@ -1826,12 +1851,6 @@ More important in retrospect, starting with LLVM would have made it
 harder to introduce some of the ABI and related changes, such as
 stack management, that Go requires but are not part of the standard
 C setup.
-A new [LLVM implementation](https://go.googlesource.com/gollvm/)
-is starting to come together now, however.
-
-The `Gccgo` compiler is a front end written in C++
-with a recursive descent parser coupled to the
-standard GCC back end.
 
 Go turned out to be a fine language in which to implement a Go compiler,
 although that was not its original goal.
@@ -1979,7 +1998,7 @@ There has been significant improvement in the performance of many programs
 as the language and tools have developed.
 See the blog post about
 [profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for an informative example.
+Go programs](/blog/profiling-go-programs) for an informative example.
 
 ## Changes from C
 
@@ -2129,22 +2148,3 @@ garbage collection, and garbage collection alone.
 The current implementation is a mark-and-sweep collector.
 If the machine is a multiprocessor, the collector runs on a separate CPU
 core in parallel with the main program.
-Major work on the collector in recent years has reduced pause times
-often to the sub-millisecond range, even for large heaps,
-all but eliminating one of the major objections to garbage collection
-in networked servers.
-Work continues to refine the algorithm, reduce overhead and
-latency further, and to explore new approaches.
-The 2018
-[ISMM keynote](https://blog.golang.org/ismmkeynote)
-by Rick Hudson of the Go team
-describes the progress so far and suggests some future approaches.
-
-On the topic of performance, keep in mind that Go gives the programmer
-considerable control over memory layout and allocation, much more than
-is typical in garbage-collected languages. A careful programmer can reduce
-the garbage collection overhead dramatically by using the language well;
-see the article about
-[profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go's
-profiling tools.
