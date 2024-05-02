@@ -1,17 +1,43 @@
+- [Release Notes](/doc/devel/release)
+
+- [Packages](https://pkg.go.dev)
+- Community _navigate\_next_
+
+
+  _navigate\_before_ Community
+
+
+
+- [Recorded Talks](/talks/)
+- [Meetups\
+   _open\_in\_new_](https://www.meetup.com/pro/go)
+- [Conferences\
+   _open\_in\_new_](/wiki/Conferences)
+- [Go blog](/blog)
+- [Go project](/help)
+- Get connected
+
+  [![](/images/logos/social/google-groups.svg)](https://groups.google.com/g/golang-nuts)[![](/images/logos/social/github.svg)](https://github.com/golang)[![](/images/logos/social/twitter.svg)](https://twitter.com/golang)[![](/images/logos/social/reddit.svg)](https://www.reddit.com/r/golang/)[![](/images/logos/social/slack.svg)](https://invite.slack.golangbridge.org/)[![](/images/logos/social/stack-overflow.svg)](https://stackoverflow.com/tags/go)
+
+
+1. [Documentation](/doc/)
+2. [Frequently Asked Questions (FAQ)](/doc/faq)
+
 # Frequently Asked Questions (FAQ)
 
 ## Origins
 
 ### What is the purpose of the project?
 
-At the time of Go's inception, only a decade ago, the programming world was different from today.
+At the time of Go's inception in 2007 the programming world was different from today.
 Production software was usually written in C++ or Java,
 GitHub did not exist, most computers were not yet multiprocessors,
 and other than Visual Studio and Eclipse there were few IDEs or other high-level tools available
 at all, let alone for free on the Internet.
 
-Meanwhile, we had become frustrated by the undue complexity required to use
-the languages we worked with to develop server software.
+Meanwhile, we had become frustrated by the undue complexity required
+to build large software projects with
+the languages we were using and their associated build systems.
 Computers had become enormously quicker since languages such as
 C, C++ and Java were first developed but the act of programming had not
 itself advanced nearly as much.
@@ -67,7 +93,7 @@ The mascot and logo were designed by
 [Renée French](https://reneefrench.blogspot.com), who also designed
 [Glenda](https://9p.io/plan9/glenda.html),
 the Plan 9 bunny.
-A [blog post](https://blog.golang.org/gopher)
+A [blog post](/blog/gopher)
 about the gopher explains how it was
 derived from one she used for a [WFMU](https://wfmu.org/)
 T-shirt design some years ago.
@@ -91,11 +117,11 @@ originally _golang.org_.
 (There was no _.dev_ domain then.)
 Many use the golang name, though, and it is handy as
 a label.
-For instance, the Twitter tag for the language is "#golang".
+For instance, the social media tag for the language is "#golang".
 The language's name is just plain Go, regardless.
 
 A side note: Although the
-[official logo](https://blog.golang.org/go-brand)
+[official logo](/blog/go-brand)
 has two capital letters, the language name is written Go, not GO.
 
 ### Why did you create a new language?
@@ -119,13 +145,16 @@ an active, almost mainstream field again.
 Go addressed these issues by attempting to combine the ease of programming of an interpreted,
 dynamically typed
 language with the efficiency and safety of a statically typed, compiled language.
-It also aimed to be modern, with support for networked and multicore
-computing. Finally, working with Go is intended to be _fast_: it should take
+It also aimed to be better adapted to current hardware, with support for networked and multicore
+computing.
+Finally, working with Go is intended to be _fast_: it should take
 at most a few seconds to build a large executable on a single computer.
-To meet these goals required addressing a number of
-linguistic issues: an expressive but lightweight type system;
-concurrency and garbage collection; rigid dependency specification;
-and so on. These cannot be addressed well by libraries or tools; a new
+Meeting these goals led us to rethink some of the programming approaches
+from our current languages, leading to:
+a compositional rather than hierarchical type system;
+support for concurrency and garbage collection; rigid specification of dependencies;
+and so on.
+These cannot be handled well by libraries or tools; a new
 language was called for.
 
 The article [Go at Google](/talks/2012/splash.article)
@@ -167,7 +196,7 @@ simple type derivation using the `:=`
 declare-and-initialize construct. And perhaps most radically, there
 is no type hierarchy: types just _are_, they don't have to
 announce their relationships. These simplifications allow Go to be
-expressive yet comprehensible without sacrificing, well, sophistication.
+expressive yet comprehensible without sacrificing productivity.
 
 Another important principle is to keep the concepts orthogonal.
 Methods can be implemented for any type; structures represent data while
@@ -179,13 +208,7 @@ easier to understand what happens when things combine.
 ### Is Google using Go internally?
 
 Yes. Go is used widely in production inside Google.
-One easy example is the server behind
-[golang.org](https://golang.org).
-It's just the [`godoc`](/cmd/godoc)
-document server running in a production configuration on
-[Google App Engine](https://developers.google.com/appengine/).
-
-A more significant instance is Google's download server, `dl.google.com`,
+One example is Google's download server, `dl.google.com`,
 which delivers Chrome binaries and other large installables such as `apt-get`
 packages.
 
@@ -194,6 +217,7 @@ for a number of areas including
 [site reliability\
 engineering (SRE)](/talks/2013/go-sreops.slide)
 and large-scale data processing.
+It is also a key part of the software that runs Google Cloud.
 
 ### What other companies use Go?
 
@@ -203,13 +227,17 @@ A couple of major cloud infrastructure projects written in Go are
 Docker and Kubernetes,
 but there are many more.
 
-It's not just cloud, though.
-The Go Wiki includes a
-[page](https://github.com/golang/go/wiki/GoUsers),
+It's not just cloud, though, as you can see from the list of
+companies on the
+[go.dev web site](/)
+along with some
+[success stories](/solutions/case-studies).
+Also, the Go Wiki includes a
+[page](/wiki/GoUsers),
 updated regularly, that lists some of the many companies using Go.
 
-The Wiki also has a page with links to
-[success stories](https://github.com/golang/go/wiki/SuccessStories)
+The Wiki also has a page with links to more
+[success stories](/wiki/SuccessStories)
 about companies and projects that are using the language.
 
 ### Do Go programs link with C/C++ programs?
@@ -224,11 +252,13 @@ pure Go code, so do so with care.
 
 If you do need to use C with Go, how to proceed depends on the Go
 compiler implementation.
-There are three Go compiler implementations supported by the
-Go team.
-These are `gc`, the default compiler,
-`gccgo`, which uses the GCC back end,
-and a somewhat less mature `gollvm`, which uses the LLVM infrastructure.
+The "standard" compiler, part of the Go toolchain supported by the
+Go team at Google, is called `gc`.
+In addition, there are also a GCC-based compiler ( `gccgo`) and
+an LLVM-based compiler ( `gollvm`),
+as well as a growing list of unusual ones serving different purposes,
+sometimes implementing language subsets,
+such as [TinyGo](https://tinygo.org/).
 
 `Gc` uses a different calling convention and linker from C and
 therefore cannot be called directly from C programs, or vice versa.
@@ -237,8 +267,8 @@ The [`cgo`](/cmd/cgo/) program provides the mechanism for a
 C libraries from Go code.
 SWIG extends this capability to C++ libraries.
 
-You can also use `cgo` and SWIG with `Gccgo` and `gollvm`.
-Since they use a traditional API, it's also possible, with great care,
+You can also use `cgo` and SWIG with `gccgo` and `gollvm`.
+Since they use a traditional ABI, it's also possible, with great care,
 to link code from these compilers directly with GCC/LLVM-compiled C or C++ programs.
 However, doing so safely requires an understanding of the calling conventions for
 all languages concerned, as well as concern for stack limits when calling C or C++
@@ -251,9 +281,13 @@ libraries have been designed to make it easy to analyze source code.
 As a consequence, most well-known editors and IDEs support Go well,
 either directly or through a plugin.
 
-The list of well-known IDEs and editors that have good Go support
-available includes Emacs, Vim, VSCode, Atom, Eclipse, Sublime, IntelliJ
-(through a custom variant called Goland), and many more.
+The Go team also supports a Go language server for the LSP protocol, called
+[`gopls`](https://pkg.go.dev/golang.org/x/tools/gopls#section-readme).
+Tools that support LSP can use `gopls` to integrate language-specific support.
+
+The list of well-known IDEs and editors that offer good Go support
+includes Emacs, Vim, VSCode, Atom, Eclipse, Sublime, IntelliJ
+(through a custom variant called GoLand), and many more.
 Chances are your favorite environment is a productive one for
 programming in Go.
 
@@ -263,21 +297,13 @@ A separate open source project provides the necessary compiler plugin and librar
 It is available at
 [github.com/golang/protobuf/](https://github.com/golang/protobuf).
 
-### Can I translate the Go home page into another language?
-
-Absolutely. We encourage developers to make Go Language sites in their own languages.
-However, if you choose to add the Google logo or branding to your site
-(it does not appear on [golang.org](/)),
-you will need to abide by the guidelines at
-[www.google.com/permissions/guidelines.html](https://www.google.com/permissions/guidelines.html)
-
 ## Design
 
 ### Does Go have a runtime?
 
-Go does have an extensive library, called the _runtime_,
+Go has an extensive runtime library, often just called the _runtime_,
 that is part of every Go program.
-The runtime library implements garbage collection, concurrency,
+This library implements garbage collection, concurrency,
 stack management, and other critical features of the Go language.
 Although it is more central to the language, Go's runtime is analogous
 to `libc`, the C library.
@@ -387,7 +413,7 @@ to handle catastrophe but requires no extra control structures and,
 when used well, can result in clean error-handling code.
 
 See the [Defer, Panic, and Recover](/doc/articles/defer_panic_recover.html) article for details.
-Also, the [Errors are values](https://blog.golang.org/errors-are-values) blog post
+Also, the [Errors are values](/blog/errors-are-values) blog post
 describes one approach to handling errors cleanly in Go by demonstrating that,
 since errors are just values, the full power of Go can be deployed in error handling.
 
@@ -471,6 +497,10 @@ it is safe for them to access the map concurrently without synchronization.
 As an aid to correct map use, some implementations of the language
 contain a special check that automatically reports at run time when a map is modified
 unsafely by concurrent execution.
+Also there is a type in the sync library called
+[`sync.Map`](https://pkg.go.dev/sync#Map) that works
+well for certain usage patterns such as static caches, although it is not
+suitable as a general replacement for the builtin map type.
 
 ### Will you accept my language change?
 
@@ -574,7 +604,7 @@ requirement. Again, things are simpler without it.
 
 ### Why doesn't Go have "implements" declarations?
 
-A Go type satisfies an interface by implementing the methods of that interface,
+A Go type implements an interface by implementing the methods of that interface,
 nothing more. This property allows interfaces to be defined and used without
 needing to modify existing code. It enables a kind of
 [structural typing](https://en.wikipedia.org/wiki/Structural_type_system) that
@@ -690,9 +720,7 @@ interface satisfaction very easy to state: are the function's names
 and signatures exactly those of the interface?
 Go's rule is also easy to implement efficiently.
 We feel these benefits offset the lack of
-automatic type promotion. Should Go one day adopt some form of polymorphic
-typing, we expect there would be a way to express the idea of these
-examples and also have them be statically checked.
+automatic type promotion.
 
 ### Can I convert a \[\]T to an \[\]interface{}?
 
@@ -868,7 +896,7 @@ The convenience of automatic conversion between numeric types in C is
 outweighed by the confusion it causes. When is an expression unsigned?
 How big is the value? Does it overflow? Is the result portable, independent
 of the machine on which it executes?
-It also complicates the compiler; “the usual arithmetic conversions”
+It also complicates the compiler; C's “usual arithmetic conversions”
 are not easy to implement and inconsistent across architectures.
 For reasons of portability, we decided to make things clear and straightforward
 at the cost of some explicit conversions in the code.
@@ -889,7 +917,7 @@ Literal constants such as `23`, `3.14159`
 and [`math.Pi`](/pkg/math/#pkg-constants)
 occupy a sort of ideal number space, with arbitrary precision and
 no overflow or underflow.
-For instance, the value of `math.Pi` is specified to 63 places
+For instance, the value of `math.Pi` is specified to 63 decimal digits
 in the source code, and constant expressions involving the value keep
 precision beyond what a `float64` could hold.
 Only when the constant or constant expression is assigned to a
@@ -912,7 +940,7 @@ without complaint from the compiler because the ideal number `2`
 can be converted safely and accurately
 to a `float64` for the call to `math.Sqrt`.
 
-A blog post titled [Constants](https://blog.golang.org/constants)
+A blog post titled [Constants](/blog/constants)
 explores this topic in more detail.
 
 ### Why are maps built in?
@@ -934,8 +962,7 @@ We may revisit this issue—and implementing equality for slices
 will not invalidate any existing programs—but without a clear idea of what
 equality of slices should mean, it was simpler to leave it out for now.
 
-In Go 1, unlike prior releases, equality is defined for structs and arrays, so such
-types can be used as map keys. Slices still do not have a definition of equality, though.
+Equality is defined for structs and arrays, so they can be used as map keys.
 
 ### Why are maps, slices, and channels references while arrays are values?
 
@@ -953,22 +980,27 @@ productive, comfortable language when it was introduced.
 
 ### How are libraries documented?
 
-There is a program, `godoc`, written in Go, that extracts
-package documentation from the source code and serves it as a web
-page with links to declarations, files, and so on.
-An instance is running at
-[golang.org/pkg/](/pkg/).
-In fact, `godoc` implements the full site at
-[golang.org/](/).
-
-A `godoc` instance may be configured to provide rich,
-interactive static analyses of symbols in the programs it displays; details are
-listed [here](/lib/godoc/analysis/help.html).
-
 For access to documentation from the command line, the
 [go](/pkg/cmd/go/) tool has a
 [doc](/pkg/cmd/go/#hdr-Show_documentation_for_package_or_symbol)
-subcommand that provides a textual interface to the same information.
+subcommand that provides a textual interface to the documentation
+for declarations, files, packages and so on.
+
+The global package discovery page
+[pkg.go.dev/pkg/](/pkg/).
+runs a server that extracts package documentation from Go source code
+anywhere on the web
+and serves it as HTML with links to the declarations and related elements.
+It is the easiest way to learn about existing Go libraries.
+
+In the early days of the project, there was a similar program, `godoc`,
+that could also be run to extract documentation for files on the local machine;
+[pkg.go.dev/pkg/](/pkg/) is essentially a descendant.
+Another descendant is the
+[`pkgsite`](https://pkg.go.dev/golang.org/x/pkgsite/cmd/pkgsite)
+command that, like `godoc`, can be run locally, although
+it is not yet integrated into
+the results shown by `go` `doc`.
 
 ### Is there a Go programming style guide?
 
@@ -1165,13 +1197,13 @@ the caller will see those changes, but `valueMethod`
 is called with a copy of the caller's argument (that's the definition
 of passing a value), so changes it makes will be invisible to the caller.
 
-By the way, in Java method receivers are always pointers,
+By the way, in Java method receivers have always been pointers,
 although their pointer nature is somewhat disguised
-(and there is a proposal to add value receivers to the language).
+(and recent developments are bringing value receivers to Java).
 It is the value receivers in Go that are unusual.
 
 Second is the consideration of efficiency. If the receiver is large,
-a big `struct` for instance, it will be much cheaper to
+a big `struct` for instance, it may be cheaper to
 use a pointer receiver.
 
 Next is consistency. If some of the methods of the type must have
@@ -1276,7 +1308,7 @@ That approach is summarized by the original
 Do not communicate by sharing memory. Instead, share memory by communicating.
 
 See the [Share Memory By Communicating](/doc/codewalk/sharemem/) code walk
-and its [associated article](https://blog.golang.org/2010/07/share-memory-by-communicating.html) for a detailed discussion of this concept.
+and its [associated article](/blog/share-memory-by-communicating) for a detailed discussion of this concept.
 
 Large concurrent programs are likely to borrow from both these toolkits.
 
@@ -1306,7 +1338,7 @@ to speed it up.
 
 For more detail on this topic see the talk entitled
 [Concurrency\
-is not Parallelism](https://blog.golang.org/2013/01/concurrency-is-not-parallelism.html).
+is not Parallelism](/blog/concurrency-is-not-parallelism).
 
 ### How can I control the number of CPUs?
 
@@ -1330,10 +1362,11 @@ I/O requests.
 can actually execute at once; arbitrarily more may be blocked
 in system calls.
 
-Go's goroutine scheduler is not as good as it needs to be, although it
-has improved over time.
-In the future, it may better optimize its use of OS threads.
-For now, if there are performance issues,
+Go's goroutine scheduler does well at balancing goroutines
+and threads, and can even preempt execution of a goroutine
+to make sure others on the same thread are not starved.
+However, it is not perfect.
+If you see performance issues,
 setting `GOMAXPROCS` on a per-application basis may help.
 
 ### Why is there no goroutine ID?
@@ -1415,7 +1448,9 @@ This is almost never the desired behavior.
 
 ### What happens with closures running as goroutines?
 
-Some confusion may arise when using closures with concurrency.
+Due to the way loop variables work, before Go version 1.22 (see
+the end of this section for an update),
+some confusion could arise when using closures with concurrency.
 Consider the following program:
 
 ```
@@ -1480,9 +1515,9 @@ seem odd but works fine in Go:
 ```
 
 This behavior of the language, not defining a new variable for
-each iteration, may have been a mistake in retrospect.
-It may be addressed in a later version but, for compatibility,
-cannot change in Go version 1.
+each iteration, was considered a mistake in retrospect,
+and has been addressed in [Go 1.22](/wiki/LoopvarExperiment), which
+does indeed create a new variable for each iteration, eliminating this issue.
 
 ## Control flow
 
@@ -1523,16 +1558,16 @@ For a more in-depth explanation with examples see the blog post
 ### How are generics implemented in Go?
 
 The compiler can choose whether to compile each instantiation
-separately or whether to compile reasonably similar instantiations as
+separately or whether to compile similar instantiations as
 a single implementation.
 The single implementation approach is similar to a function with an
 interface parameter.
 Different compilers will make different choices for different cases.
-The standard Go 1.18 compiler ordinarily emits a single instantiation
+The standard Go compiler ordinarily emits a single instantiation
 for every type argument with the same shape, where the shape is
 determined by properties of the type such as the size and the location
 of pointers that it contains.
-Future releases will experiment with the tradeoff between compile
+Future releases may experiment with the tradeoff between compile
 time, run-time efficiency, and code size.
 
 ### How do generics in Go compare to generics in other languages?
@@ -1588,7 +1623,9 @@ In Go type arguments implicitly satisfy constraints, just as Go types
 implicitly implement interface types.
 The Rust standard library defines standard traits for operations such as
 comparison or addition; the Go standard library does not, as these can
-be expressed in user code via interface types.
+be expressed in user code via interface types. The one exception
+is Go's `comparable` predefined interface, which
+captures a property not expressible in the type system.
 Python
 Python is not a statically typed language, so one can reasonably say
 that all Python functions are always generic by default: they can
@@ -1649,8 +1686,11 @@ type parameters, or add the type parameters to the receiver type.
 
 The method declarations of a generic type are written with a receiver
 that includes the type parameter names.
-Some people think that a specific type can be used, producing a method
-that only works for certain type arguments:
+Perhaps because of the similarity of the syntax for specifying types
+at a call site,
+some have thought this provides a mechanism for producing
+a method customized for certain type arguments by naming
+a specific type in the receiver, such as `string`:
 
 ```
 type S[T any] struct { f T }
@@ -1661,20 +1701,16 @@ func (s S[string]) Add(t string) string {
 
 ```
 
-This fails with a compiler error like `operator + not defined on
-s.f (variable of type string constrained by any)`, even though
-the `+` operator does of course work on the predeclared
-type `string`.
-
-This is because the use of `string` in the declaration of
-the method `Add` is simply introducing a name for the type
-parameter, and the name is `string`.
-This is a valid, if strange, thing to do.
-The field `s.f` has type `string`, not the usual
-predeclared type `string`, but rather the type parameter
-of `S`, which in this method is named `string`.
-Since the constraint of the type parameter is `any`,
-the `+` operator is not permitted.
+This fails because the word `string` is taken by
+the compiler to be the name of the type argument in the method.
+The compiler error message will be something like " `operator + not defined on
+s.f (variable of type string)`".
+This can be confusing because the `+` operator
+works fine on the predeclared type `string`,
+but the declaration has overwritten, for this method, the definition of `string`,
+and the operator does not work on that unrelated version of `string`.
+It's valid to overwrite a predeclared name like this, but is an odd thing to do and
+often a mistake.
 
 ### Why can't the compiler infer the type argument in my program?
 
@@ -1756,7 +1792,7 @@ test cases. The standard Go library is full of illustrative examples, such as in
 
 ### Why isn't _X_ in the standard library?
 
-The standard library's purpose is to support the runtime, connect to
+The standard library's purpose is to support the runtime library, connect to
 the operating system, and provide key functionality that many Go
 programs require, such as formatted I/O and networking.
 It also contains elements important for web programming, including
@@ -1782,7 +1818,7 @@ via the [`go` tool](/cmd/go/)'s
 Such code can have its own maintainers, release cycle,
 and compatibility guarantees.
 Users can find packages and read their documentation at
-[godoc.org](https://godoc.org/).
+[pkg.go.dev](https://pkg.go.dev/).
 
 Although there are pieces in the standard library that don't really belong,
 such as `log/syslog`, we continue to maintain everything in the
@@ -1819,6 +1855,12 @@ is described [here](/s/go15bootstrap) and
 and uses a custom loader, also written in Go but
 based on the Plan 9 loader, to generate ELF/Mach-O/PE binaries.
 
+The `Gccgo` compiler is a front end written in C++
+with a recursive descent parser coupled to the
+standard GCC back end. An experimental
+[LLVM back end](https://go.googlesource.com/gollvm/) is
+using the same front end.
+
 At the beginning of the project we considered using LLVM for
 `gc` but decided it was too large and slow to meet
 our performance goals.
@@ -1826,12 +1868,6 @@ More important in retrospect, starting with LLVM would have made it
 harder to introduce some of the ABI and related changes, such as
 stack management, that Go requires but are not part of the standard
 C setup.
-A new [LLVM implementation](https://go.googlesource.com/gollvm/)
-is starting to come together now, however.
-
-The `Gccgo` compiler is a front end written in C++
-with a recursive descent parser coupled to the
-standard GCC back end.
 
 Go turned out to be a fine language in which to implement a Go compiler,
 although that was not its original goal.
@@ -1841,9 +1877,10 @@ Had we decided Go should compile itself early on, we might have
 ended up with a language targeted more for compiler construction,
 which is a worthy goal but not the one we had initially.
 
-Although `gc` does not use them (yet?), a native lexer and
-parser are available in the [`go`](/pkg/go/) package
+Although `gc` has its own implementation, a native lexer and
+parser are available in the [`go/parser`](/pkg/go/parser/) package
 and there is also a native [type checker](/pkg/go/types).
+The `gc` compiler uses variants of these libraries.
 
 ### How is the run-time support implemented?
 
@@ -1901,7 +1938,7 @@ language and because the Go compiler does not report warnings, only
 errors that prevent compilation.
 
 There are two reasons for having no warnings. First, if it's worth
-complaining about, it's worth fixing in the code. (And if it's not
+complaining about, it's worth fixing in the code. (Conversely, if it's not
 worth fixing, it's not worth mentioning.) Second, having the compiler
 generate warnings encourages the implementation to warn about weak
 cases that can make compilation noisy, masking real errors that
@@ -1929,7 +1966,9 @@ Nowadays, most Go programmers use a tool,
 [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports),
 which automatically rewrites a Go source file to have the correct imports,
 eliminating the unused imports issue in practice.
-This program is easily connected to most editors to run automatically when a Go source file is written.
+This program is easily connected to most editors and IDEs to run automatically when a Go source file is written.
+This functionality is also built into `gopls`, as
+[discussed above](/doc/faq#ide).
 
 ### Why does my virus-scanning software think my Go distribution or compiled binary is infected?
 
@@ -1963,7 +2002,7 @@ for instance) are essentially comparing Go's native [regexp package](/pkg/regexp
 mature, highly optimized regular expression libraries like PCRE.
 
 Benchmark games are won by extensive tuning and the Go versions of most
-of the benchmarks need attention. If you measure comparable C
+of the benchmarks need attention. If you measure truly comparable C
 and Go programs
 ( [reverse-complement.go](https://go.googlesource.com/exp/+/master/shootout/reverse-complement.go)
 is one example), you'll see the two languages are much closer in raw performance
@@ -1979,7 +2018,8 @@ There has been significant improvement in the performance of many programs
 as the language and tools have developed.
 See the blog post about
 [profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for an informative example.
+Go programs](/blog/profiling-go-programs) for an informative example.
+It's quite old but still contains helpful information.
 
 ## Changes from C
 
@@ -2108,43 +2148,3 @@ systems.
 
 Much of the difficulty of concurrent programming
 has its roots in the object lifetime problem:
-as objects get passed among threads it becomes cumbersome
-to guarantee they become freed safely.
-Automatic garbage collection makes concurrent code far easier to write.
-Of course, implementing garbage collection in a concurrent environment is
-itself a challenge, but meeting it once rather than in every
-program helps everyone.
-
-Finally, concurrency aside, garbage collection makes interfaces
-simpler because they don't need to specify how memory is managed across them.
-
-This is not to say that the recent work in languages
-like Rust that bring new ideas to the problem of managing
-resources is misguided; we encourage this work and are excited to see
-how it evolves.
-But Go takes a more traditional approach by addressing
-object lifetimes through
-garbage collection, and garbage collection alone.
-
-The current implementation is a mark-and-sweep collector.
-If the machine is a multiprocessor, the collector runs on a separate CPU
-core in parallel with the main program.
-Major work on the collector in recent years has reduced pause times
-often to the sub-millisecond range, even for large heaps,
-all but eliminating one of the major objections to garbage collection
-in networked servers.
-Work continues to refine the algorithm, reduce overhead and
-latency further, and to explore new approaches.
-The 2018
-[ISMM keynote](https://blog.golang.org/ismmkeynote)
-by Rick Hudson of the Go team
-describes the progress so far and suggests some future approaches.
-
-On the topic of performance, keep in mind that Go gives the programmer
-considerable control over memory layout and allocation, much more than
-is typical in garbage-collected languages. A careful programmer can reduce
-the garbage collection overhead dramatically by using the language well;
-see the article about
-[profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go's
-profiling tools.
