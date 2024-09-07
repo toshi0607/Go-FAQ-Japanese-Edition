@@ -119,13 +119,16 @@ an active, almost mainstream field again.
 Go addressed these issues by attempting to combine the ease of programming of an interpreted,
 dynamically typed
 language with the efficiency and safety of a statically typed, compiled language.
-It also aimed to be modern, with support for networked and multicore
-computing. Finally, working with Go is intended to be _fast_: it should take
+It also aimed to be better adapted to current hardware, with support for networked and multicore
+computing.
+Finally, working with Go is intended to be _fast_: it should take
 at most a few seconds to build a large executable on a single computer.
-To meet these goals required addressing a number of
-linguistic issues: an expressive but lightweight type system;
-concurrency and garbage collection; rigid dependency specification;
-and so on. These cannot be addressed well by libraries or tools; a new
+Meeting these goals led us to rethink some of the programming approaches
+from our current languages, leading to:
+a compositional rather than hierarchical type system;
+support for concurrency and garbage collection; rigid specification of dependencies;
+and so on.
+These cannot be handled well by libraries or tools; a new
 language was called for.
 
 The article [Go at Google](/talks/2012/splash.article)
