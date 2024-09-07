@@ -4,14 +4,15 @@
 
 ### What is the purpose of the project?
 
-At the time of Go's inception, only a decade ago, the programming world was different from today.
+At the time of Go’s inception in 2007 the programming world was different from today.
 Production software was usually written in C++ or Java,
 GitHub did not exist, most computers were not yet multiprocessors,
 and other than Visual Studio and Eclipse there were few IDEs or other high-level tools available
 at all, let alone for free on the Internet.
 
-Meanwhile, we had become frustrated by the undue complexity required to use
-the languages we worked with to develop server software.
+Meanwhile, we had become frustrated by the undue complexity required
+to build large software projects with
+the languages we were using and their associated build systems.
 Computers had become enormously quicker since languages such as
 C, C++ and Java were first developed but the act of programming had not
 itself advanced nearly as much.
@@ -28,8 +29,8 @@ And to make resource management tractable in a large concurrent program,
 garbage collection, or at least some sort of safe automatic memory management was required.
 
 These considerations led to
-[a\
-series of discussions](https://commandcenter.blogspot.com/2017/09/go-ten-years-and-climbing.html) from which Go arose, first as a set of ideas and
+[a series of discussions](https://commandcenter.blogspot.com/2017/09/go-ten-years-and-climbing.html%22)
+from which Go arose, first as a set of ideas and
 desiderata, then as a language.
 An overarching goal was that Go do more to help the working programmer
 by enabling tooling, automating mundane tasks such as code formatting,
@@ -37,8 +38,7 @@ and removing obstacles to working on large code bases.
 
 A much more expansive description of the goals of Go and how
 they are met, or at least approached, is available in the article,
-[Go at Google:\
-Language Design in the Service of Software Engineering](/talks/2012/splash.article).
+[Go at Google: Language Design in the Service of Software Engineering](/talks/2012/splash.article).
 
 ### What is the history of the project?
 
