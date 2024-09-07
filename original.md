@@ -59,15 +59,15 @@ Countless people from the community have contributed ideas, discussions, and cod
 
 There are now millions of Go programmers—gophers—around the world,
 and there are more every day.
-Go's success has far exceeded our expectations.
+Go’s success has far exceeded our expectations.
 
-### What's the origin of the gopher mascot?
+### What’s the origin of the gopher mascot?
 
 The mascot and logo were designed by
 [Renée French](https://reneefrench.blogspot.com), who also designed
 [Glenda](https://9p.io/plan9/glenda.html),
 the Plan 9 bunny.
-A [blog post](https://blog.golang.org/gopher)
+A [blog post](/blog/gopher)
 about the gopher explains how it was
 derived from one she used for a [WFMU](https://wfmu.org/)
 T-shirt design some years ago.
@@ -81,21 +81,21 @@ illustrating his characteristics and how to represent them correctly.
 The model sheet was first shown in a
 [talk](https://www.youtube.com/watch?v=4rw_B4yY69k)
 by Renée at Gophercon in 2016.
-He has unique features; he's the _Go gopher_, not just any old gopher.
+He has unique features; he’s the _Go gopher_, not just any old gopher.
 
 ### Is the language called Go or Golang?
 
 The language is called Go.
-The "golang" moniker arose because the web site was
+The “golang” moniker arose because the web site was
 originally _golang.org_.
 (There was no _.dev_ domain then.)
 Many use the golang name, though, and it is handy as
 a label.
-For instance, the Twitter tag for the language is "#golang".
-The language's name is just plain Go, regardless.
+For instance, the social media tag for the language is “#golang”.
+The language’s name is just plain Go, regardless.
 
 A side note: Although the
-[official logo](https://blog.golang.org/go-brand)
+[official logo](/blog/go-brand)
 has two capital letters, the language name is written Go, not GO.
 
 ### Why did you create a new language?
