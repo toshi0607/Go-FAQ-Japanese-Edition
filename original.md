@@ -135,13 +135,13 @@ The article [Go at Google](/talks/2012/splash.article)
 discusses the background and motivation behind the design of the Go language,
 as well as providing more detail about many of the answers presented in this FAQ.
 
-### What are Go's ancestors?
+### What are Go’s ancestors?
 
 Go is mostly in the C family (basic syntax),
 with significant input from the Pascal/Modula/Oberon
 family (declarations, packages),
 plus some ideas from languages
-inspired by Tony Hoare's CSP,
+inspired by Tony Hoare’s CSP,
 such as Newsqueak and Limbo (concurrency).
 However, it is a new language across the board.
 In every respect the language was designed by thinking
@@ -168,9 +168,9 @@ automatic, and easy to use. Syntax is clean and light on keywords.
 Repetition ( `foo.Foo* myFoo = new(foo.Foo)`) is reduced by
 simple type derivation using the `:=`
 declare-and-initialize construct. And perhaps most radically, there
-is no type hierarchy: types just _are_, they don't have to
+is no type hierarchy: types just _are_, they don’t have to
 announce their relationships. These simplifications allow Go to be
-expressive yet comprehensible without sacrificing, well, sophistication.
+expressive yet comprehensible without sacrificing productivity.
 
 Another important principle is to keep the concepts orthogonal.
 Methods can be implemented for any type; structures represent data while
