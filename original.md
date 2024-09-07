@@ -4,14 +4,15 @@
 
 ### What is the purpose of the project?
 
-At the time of Go's inception, only a decade ago, the programming world was different from today.
+At the time of Go’s inception in 2007 the programming world was different from today.
 Production software was usually written in C++ or Java,
 GitHub did not exist, most computers were not yet multiprocessors,
 and other than Visual Studio and Eclipse there were few IDEs or other high-level tools available
 at all, let alone for free on the Internet.
 
-Meanwhile, we had become frustrated by the undue complexity required to use
-the languages we worked with to develop server software.
+Meanwhile, we had become frustrated by the undue complexity required
+to build large software projects with
+the languages we were using and their associated build systems.
 Computers had become enormously quicker since languages such as
 C, C++ and Java were first developed but the act of programming had not
 itself advanced nearly as much.
@@ -28,8 +29,8 @@ And to make resource management tractable in a large concurrent program,
 garbage collection, or at least some sort of safe automatic memory management was required.
 
 These considerations led to
-[a\
-series of discussions](https://commandcenter.blogspot.com/2017/09/go-ten-years-and-climbing.html) from which Go arose, first as a set of ideas and
+[a series of discussions](https://commandcenter.blogspot.com/2017/09/go-ten-years-and-climbing.html%22)
+from which Go arose, first as a set of ideas and
 desiderata, then as a language.
 An overarching goal was that Go do more to help the working programmer
 by enabling tooling, automating mundane tasks such as code formatting,
@@ -37,8 +38,7 @@ and removing obstacles to working on large code bases.
 
 A much more expansive description of the goals of Go and how
 they are met, or at least approached, is available in the article,
-[Go at Google:\
-Language Design in the Service of Software Engineering](/talks/2012/splash.article).
+[Go at Google: Language Design in the Service of Software Engineering](/talks/2012/splash.article).
 
 ### What is the history of the project?
 
@@ -59,15 +59,15 @@ Countless people from the community have contributed ideas, discussions, and cod
 
 There are now millions of Go programmers—gophers—around the world,
 and there are more every day.
-Go's success has far exceeded our expectations.
+Go’s success has far exceeded our expectations.
 
-### What's the origin of the gopher mascot?
+### What’s the origin of the gopher mascot?
 
 The mascot and logo were designed by
 [Renée French](https://reneefrench.blogspot.com), who also designed
 [Glenda](https://9p.io/plan9/glenda.html),
 the Plan 9 bunny.
-A [blog post](https://blog.golang.org/gopher)
+A [blog post](/blog/gopher)
 about the gopher explains how it was
 derived from one she used for a [WFMU](https://wfmu.org/)
 T-shirt design some years ago.
@@ -81,21 +81,21 @@ illustrating his characteristics and how to represent them correctly.
 The model sheet was first shown in a
 [talk](https://www.youtube.com/watch?v=4rw_B4yY69k)
 by Renée at Gophercon in 2016.
-He has unique features; he's the _Go gopher_, not just any old gopher.
+He has unique features; he’s the _Go gopher_, not just any old gopher.
 
 ### Is the language called Go or Golang?
 
 The language is called Go.
-The "golang" moniker arose because the web site was
+The “golang” moniker arose because the web site was
 originally _golang.org_.
 (There was no _.dev_ domain then.)
 Many use the golang name, though, and it is handy as
 a label.
-For instance, the Twitter tag for the language is "#golang".
-The language's name is just plain Go, regardless.
+For instance, the social media tag for the language is “#golang”.
+The language’s name is just plain Go, regardless.
 
 A side note: Although the
-[official logo](https://blog.golang.org/go-brand)
+[official logo](/blog/go-brand)
 has two capital letters, the language name is written Go, not GO.
 
 ### Why did you create a new language?
@@ -119,26 +119,29 @@ an active, almost mainstream field again.
 Go addressed these issues by attempting to combine the ease of programming of an interpreted,
 dynamically typed
 language with the efficiency and safety of a statically typed, compiled language.
-It also aimed to be modern, with support for networked and multicore
-computing. Finally, working with Go is intended to be _fast_: it should take
+It also aimed to be better adapted to current hardware, with support for networked and multicore
+computing.
+Finally, working with Go is intended to be _fast_: it should take
 at most a few seconds to build a large executable on a single computer.
-To meet these goals required addressing a number of
-linguistic issues: an expressive but lightweight type system;
-concurrency and garbage collection; rigid dependency specification;
-and so on. These cannot be addressed well by libraries or tools; a new
+Meeting these goals led us to rethink some of the programming approaches
+from our current languages, leading to:
+a compositional rather than hierarchical type system;
+support for concurrency and garbage collection; rigid specification of dependencies;
+and so on.
+These cannot be handled well by libraries or tools; a new
 language was called for.
 
 The article [Go at Google](/talks/2012/splash.article)
 discusses the background and motivation behind the design of the Go language,
 as well as providing more detail about many of the answers presented in this FAQ.
 
-### What are Go's ancestors?
+### What are Go’s ancestors?
 
 Go is mostly in the C family (basic syntax),
 with significant input from the Pascal/Modula/Oberon
 family (declarations, packages),
 plus some ideas from languages
-inspired by Tony Hoare's CSP,
+inspired by Tony Hoare’s CSP,
 such as Newsqueak and Limbo (concurrency).
 However, it is a new language across the board.
 In every respect the language was designed by thinking
@@ -165,9 +168,9 @@ automatic, and easy to use. Syntax is clean and light on keywords.
 Repetition ( `foo.Foo* myFoo = new(foo.Foo)`) is reduced by
 simple type derivation using the `:=`
 declare-and-initialize construct. And perhaps most radically, there
-is no type hierarchy: types just _are_, they don't have to
+is no type hierarchy: types just _are_, they don’t have to
 announce their relationships. These simplifications allow Go to be
-expressive yet comprehensible without sacrificing, well, sophistication.
+expressive yet comprehensible without sacrificing productivity.
 
 Another important principle is to keep the concepts orthogonal.
 Methods can be implemented for any type; structures represent data while
@@ -179,21 +182,15 @@ easier to understand what happens when things combine.
 ### Is Google using Go internally?
 
 Yes. Go is used widely in production inside Google.
-One easy example is the server behind
-[golang.org](https://golang.org).
-It's just the [`godoc`](/cmd/godoc)
-document server running in a production configuration on
-[Google App Engine](https://developers.google.com/appengine/).
-
-A more significant instance is Google's download server, `dl.google.com`,
+One example is Google’s download server, `dl.google.com`,
 which delivers Chrome binaries and other large installables such as `apt-get`
 packages.
 
 Go is not the only language used at Google, far from it, but it is a key language
 for a number of areas including
-[site reliability\
-engineering (SRE)](/talks/2013/go-sreops.slide)
+[site reliability engineering (SRE)](/talks/2013/go-sreops.slide)
 and large-scale data processing.
+It is also a key part of the software that runs Google Cloud.
 
 ### What other companies use Go?
 
