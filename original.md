@@ -182,21 +182,15 @@ easier to understand what happens when things combine.
 ### Is Google using Go internally?
 
 Yes. Go is used widely in production inside Google.
-One easy example is the server behind
-[golang.org](https://golang.org).
-It's just the [`godoc`](/cmd/godoc)
-document server running in a production configuration on
-[Google App Engine](https://developers.google.com/appengine/).
-
-A more significant instance is Google's download server, `dl.google.com`,
+One example is Google’s download server, `dl.google.com`,
 which delivers Chrome binaries and other large installables such as `apt-get`
 packages.
 
 Go is not the only language used at Google, far from it, but it is a key language
 for a number of areas including
-[site reliability\
-engineering (SRE)](/talks/2013/go-sreops.slide)
+[site reliability engineering (SRE)](/talks/2013/go-sreops.slide)
 and large-scale data processing.
+It is also a key part of the software that runs Google Cloud.
 
 ### What other companies use Go?
 
