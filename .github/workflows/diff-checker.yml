@@ -8,16 +8,16 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
 
       - name: Check diff
         id: check-diff
         run: |
-          GOBIN=${PWD}/bin go install github.com/suntong/html2md@latest
-          curl https://go.dev/doc/faq | ./bin/html2md -i -G | sed -n -e 106,2255p > original.md
+          GOBIN=${PWD}/bin go install github.com/suntong/html2md@v1.5.0
+          curl https://go.dev/doc/faq | ./bin/html2md -i -G | sed -n -e 131,2411p > original.md
           echo "diff=$(git diff --name-only original.md | wc -l | xargs )" >> $GITHUB_OUTPUT
 
       - name: Create a PR if diff exists
