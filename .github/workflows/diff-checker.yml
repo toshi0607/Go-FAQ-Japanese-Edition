@@ -34,4 +34,11 @@ jobs:
           git add original.md
           git commit --message "update diff"
           git push origin ${branch}
+
+          pr_number=$(gh pr list --search "Update site info in:title" --json number --jq '.[0].number')
+          if [ ! -z "$pr_number" ]; then
+            echo "Closing PR #$pr_number from yesterday"
+            gh pr close $pr_number --comment "Closing in favor of a new PR"
+          fi
+
           gh pr create -B main -t "[$(date +'%Y-%m-%d')] Update site info" --body "Check the diff content"
