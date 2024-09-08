@@ -200,13 +200,17 @@ A couple of major cloud infrastructure projects written in Go are
 Docker and Kubernetes,
 but there are many more.
 
-It's not just cloud, though.
-The Go Wiki includes a
-[page](https://github.com/golang/go/wiki/GoUsers),
+It’s not just cloud, though, as you can see from the list of
+companies on the
+[go.dev web site](/)
+along with some
+[success stories](/solutions/case-studies).
+Also, the Go Wiki includes a
+[page](/wiki/GoUsers),
 updated regularly, that lists some of the many companies using Go.
 
-The Wiki also has a page with links to
-[success stories](https://github.com/golang/go/wiki/SuccessStories)
+The Wiki also has a page with links to more
+[success stories](/wiki/SuccessStories)
 about companies and projects that are using the language.
 
 ### Do Go programs link with C/C++ programs?
