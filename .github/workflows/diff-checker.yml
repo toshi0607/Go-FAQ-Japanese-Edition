@@ -3,6 +3,7 @@ name: diff checker
 on:
   schedule:
     - cron: '0 23 * * *'
+  workflow_dispatch:
 
 jobs:
   check:
