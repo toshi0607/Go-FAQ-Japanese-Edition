@@ -20,7 +20,6 @@
     - [Goのプログラムは、C/C++のプログラムとリンクできる？](#goのプログラムはccのプログラムとリンクできる)
     - [GoをサポートするIDEは？](#goをサポートするideは)
     - [GoはGoogleのプロトコルバッファをサポートしている？](#goはgoogleのプロトコルバッファをサポートしている)
-    - [Goのホームページを他の言語に翻訳することはできる？](#goのホームページを他の言語に翻訳することはできる)
   - [設計](#設計)
     - [Goにはランタイムがある？](#goにはランタイムがある)
     - [Unicodeの識別子はどうなっている？](#unicodeの識別子はどうなっている)
@@ -198,10 +197,6 @@ Goをサポートしている有名なIDEやエディタには、Emacs、Vim、V
 ### GoはGoogleのプロトコルバッファをサポートしている？
 
 必要なコンパイラプラグインやライブラリは、別のオープンソースプロジェクトが提供しています。[github.com/golang/protobuf/](https://github.com/golang/protobuf) で公開されています。
-
-### Goのホームページを他の言語に翻訳することはできる？
-
-もちろんです。私たちは、開発者が自分の言語でGo言語サイトを作成することを推奨しています。ただし、Googleのロゴやブランドをサイトに追加する場合は（[go.dev](https://go.dev/)には表示されていません）、[about.google/brand-resource-center/](https://about.google/brand-resource-center/) にあるガイドラインを遵守してください。
 
 ## 設計
 
@@ -394,7 +389,7 @@ func (t T3) Open() *os.File
 
 他の言語では満たすかもしれませんが、Goでは`T3`は`Opener`を満たしません。
 
-このような場合、Goの型システムはプログラマにとってあまり多くをサポートしてくれないのは事実です。しかし、サブタイピングがないため、インターフェースの充足性に関するルールはつぎのように非常に簡単に記述できます。関数の名前とシグネチャはインターフェースのものと全く同じか？また、Goのルールは効率的に実装するのが簡単です。これらの利点は、自動的な型の上位変換（type promotion）がないことを補って余りあるものだと感じています。いつかGoが何らかの多相型付けを採用する日が来れば、これらの例のような考えを表現し、かつ静的にチェックする方法があると思われます。
+このような場合、Goの型システムはプログラマにとってあまり多くをサポートしてくれないのは事実です。しかし、サブタイピングがないため、インターフェースの充足性に関するルールはつぎのように非常に簡単に記述できます。関数の名前とシグネチャはインターフェースのものと全く同じか？また、Goのルールは効率的に実装するのが簡単です。これらの利点は、自動的な型の上位変換（type promotion）がないことを補って余りあるものだと感じています。
 
 ### []Tを[]interface{}に変換できる？
 
@@ -542,7 +537,7 @@ Goは、名前付け、レイアウト、ファイル構成に関する意思決
 `git`は、HTTPSで認証するように設定することも、HTTPSの代わりにSSHを使うように設定することもできます。HTTPSで認証するには、gitが参照する`$HOME/.netrc`ファイルに一行を追加します。
 
 ```shell
-machine github.com login USERNAME password APIKEY
+machine github.com login *USERNAME* password *APIKEY*
 ```
 
 GitHubアカウントの場合、パスワードは[個人用アクセストークン](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)にすることができます。
@@ -551,7 +546,7 @@ GitHubアカウントの場合、パスワードは[個人用アクセストー�
 
 ```shell
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 ```
 
 ### 「go get」を使ってパッケージのバージョンを管理するには？
