@@ -219,7 +219,7 @@ It is possible to use C and Go together in the same address space,
 but it is not a natural fit and can require special interface software.
 Also, linking C with Go code gives up the memory
 safety and stack management properties that Go provides.
-Sometimes it's absolutely necessary to use C libraries to solve a problem,
+Sometimes it’s absolutely necessary to use C libraries to solve a problem,
 but doing so always introduces an element of risk not present with
 pure Go code, so do so with care.
 
@@ -239,7 +239,7 @@ C libraries from Go code.
 SWIG extends this capability to C++ libraries.
 
 You can also use `cgo` and SWIG with `Gccgo` and `gollvm`.
-Since they use a traditional API, it's also possible, with great care,
+Since they use a traditional API, it’s also possible, with great care,
 to link code from these compilers directly with GCC/LLVM-compiled C or C++ programs.
 However, doing so safely requires an understanding of the calling conventions for
 all languages concerned, as well as concern for stack limits when calling C or C++
@@ -258,19 +258,11 @@ available includes Emacs, Vim, VSCode, Atom, Eclipse, Sublime, IntelliJ
 Chances are your favorite environment is a productive one for
 programming in Go.
 
-### Does Go support Google's protocol buffers?
+Does Go support Google’s protocol buffers?
 
 A separate open source project provides the necessary compiler plugin and library.
 It is available at
 [github.com/golang/protobuf/](https://github.com/golang/protobuf).
-
-### Can I translate the Go home page into another language?
-
-Absolutely. We encourage developers to make Go Language sites in their own languages.
-However, if you choose to add the Google logo or branding to your site
-(it does not appear on [golang.org](/)),
-you will need to abide by the guidelines at
-[www.google.com/permissions/guidelines.html](https://www.google.com/permissions/guidelines.html)
 
 ## Design
 
@@ -280,10 +272,10 @@ Go does have an extensive library, called the _runtime_,
 that is part of every Go program.
 The runtime library implements garbage collection, concurrency,
 stack management, and other critical features of the Go language.
-Although it is more central to the language, Go's runtime is analogous
+Although it is more central to the language, Go’s runtime is analogous
 to `libc`, the C library.
 
-It is important to understand, however, that Go's runtime does not
+It is important to understand, however, that Go’s runtime does not
 include a virtual machine, such as is provided by the Java runtime.
 Go programs are compiled ahead of time to native machine code
 (or JavaScript or WebAssembly, for some variant implementations).
@@ -291,13 +283,13 @@ Thus, although the term is often used to describe the virtual
 environment in which a program runs, in Go the word “runtime”
 is just the name given to the library providing critical language services.
 
-### What's up with Unicode identifiers?
+### What’s up with Unicode identifiers?
 
 When designing Go, we wanted to make sure that it was not
 overly ASCII-centric,
 which meant extending the space of identifiers from the
 confines of 7-bit ASCII.
-Go's rule—identifier characters must be
+Go’s rule—identifier characters must be
 letters or digits as defined by Unicode—is simple to understand
 and to implement but has restrictions.
 Combining characters are
@@ -319,7 +311,7 @@ Exactly what to do remains an active topic of discussion, and a future
 version of the language may be more liberal in its definition
 of an identifier.
 For instance, it might adopt some of the ideas from the Unicode
-organization's [recommendations](http://unicode.org/reports/tr31/)
+organization’s [recommendations](http://unicode.org/reports/tr31/)
 for identifiers.
 Whatever happens, it must be done compatibly while preserving
 (or perhaps expanding) the way letter case determines visibility of
@@ -331,17 +323,17 @@ from a rule that admits ambiguous identifiers.
 
 ### Why does Go not have feature X?
 
-Every language contains novel features and omits someone's favorite
+Every language contains novel features and omits someone’s favorite
 feature. Go was designed with an eye on felicity of programming, speed of
 compilation, orthogonality of concepts, and the need to support features
 such as concurrency and garbage collection. Your favorite feature may be
-missing because it doesn't fit, because it affects compilation speed or
+missing because it doesn’t fit, because it affects compilation speed or
 clarity of design, or because it would make the fundamental system model
 too difficult.
 
-If it bothers you that Go is missing feature X,
+If it bothers you that Go is missing feature _X_,
 please forgive us and investigate the features that Go does have. You might find that
-they compensate in interesting ways for the lack of X.
+they compensate in interesting ways for the lack of _X_.
 
 ### When did Go get generic types?
 
@@ -354,11 +346,10 @@ See the [language spec](/ref/spec) and the
 
 Go was intended as a language for writing server programs that would be
 easy to maintain over time.
-(See [this\
-article](/talks/2012/splash.article) for more background.)
+(See [this article](https://go.dev/talks/2012/splash.article) for more background.)
 The design concentrated on things like scalability, readability, and
 concurrency.
-Polymorphic programming did not seem essential to the language's
+Polymorphic programming did not seem essential to the language’s
 goals at the time, and so was initially left out for simplicity.
 
 Generics are convenient but they come at a cost in complexity in the
@@ -374,27 +365,27 @@ convoluted code. It also tends to encourage programmers to label
 too many ordinary errors, such as failing to open a file, as
 exceptional.
 
-Go takes a different approach. For plain error handling, Go's multi-value
+Go takes a different approach. For plain error handling, Go’s multi-value
 returns make it easy to report an error without overloading the return value.
-[A canonical error type, coupled\
-with Go's other features](/doc/articles/error_handling.html), makes error handling pleasant but quite different
+[A canonical error type, coupled with Go’s other features](https://go.dev/blog/error-handling-and-go),
+makes error handling pleasant but quite different
 from that in other languages.
 
 Go also has a couple
 of built-in functions to signal and recover from truly exceptional
 conditions. The recovery mechanism is executed only as part of a
-function's state being torn down after an error, which is sufficient
+function’s state being torn down after an error, which is sufficient
 to handle catastrophe but requires no extra control structures and,
 when used well, can result in clean error-handling code.
 
 See the [Defer, Panic, and Recover](/doc/articles/defer_panic_recover.html) article for details.
-Also, the [Errors are values](https://blog.golang.org/errors-are-values) blog post
+Also, the [Errors are values](/blog/errors-are-values) blog post
 describes one approach to handling errors cleanly in Go by demonstrating that,
 since errors are just values, the full power of Go can be deployed in error handling.
 
 ### Why does Go not have assertions?
 
-Go doesn't provide assertions. They are undeniably convenient, but our
+Go doesn’t provide assertions. They are undeniably convenient, but our
 experience has been that programmers use them as a crutch to avoid thinking
 about proper error handling and reporting. Proper error handling means that
 servers continue to operate instead of crashing after a non-fatal error.
@@ -405,7 +396,7 @@ not familiar with the code.
 
 We understand that this is a point of contention. There are many things in
 the Go language and libraries that differ from modern practices, simply
-because we feel it's sometimes worth trying a different approach.
+because we feel it’s sometimes worth trying a different approach.
 
 ### Why build concurrency on the ideas of CSP?
 
@@ -419,9 +410,9 @@ Higher-level interfaces enable much simpler code, even if there are still
 mutexes and such under the covers.
 
 One of the most successful models for providing high-level linguistic support
-for concurrency comes from Hoare's Communicating Sequential Processes, or CSP.
+for concurrency comes from Hoare’s Communicating Sequential Processes, or CSP.
 Occam and Erlang are two well known languages that stem from CSP.
-Go's concurrency primitives derive from a different part of the family tree
+Go’s concurrency primitives derive from a different part of the family tree
 whose main contribution is the powerful notion of channels as first class objects.
 Experience with several earlier languages has shown that the CSP model
 fits well into a procedural language framework.
@@ -433,14 +424,14 @@ been around for a while, is to multiplex independently executing
 functions—coroutines—onto a set of threads.
 When a coroutine blocks, such as by calling a blocking system call,
 the run-time automatically moves other coroutines on the same operating
-system thread to a different, runnable thread so they won't be blocked.
+system thread to a different, runnable thread so they won’t be blocked.
 The programmer sees none of this, which is the point.
 The result, which we call goroutines, can be very cheap: they have little
 overhead beyond the memory for the stack, which is just a few kilobytes.
 
-To make the stacks small, Go's run-time uses resizable, bounded stacks. A newly
+To make the stacks small, Go’s run-time uses resizable, bounded stacks. A newly
 minted goroutine is given a few kilobytes, which is almost always enough.
-When it isn't, the run-time grows (and shrinks) the memory for storing
+When it isn’t, the run-time grows (and shrinks) the memory for storing
 the stack automatically, allowing many goroutines to live in a modest
 amount of memory.
 The CPU overhead averages about three cheap instructions per function call.
@@ -493,10 +484,10 @@ Moreover, the compatibility promise encourages us to provide an automatic path
 forward for old programs to adapt should that situation arise.
 
 Even if your proposal is compatible with the Go 1 spec, it might
-not be in the spirit of Go's design goals.
+not be in the spirit of Go’s design goals.
 The article _[Go\_
 _at Google: Language Design in the Service of Software Engineering](/talks/2012/splash.article)_
-explains Go's origins and the motivation behind its design.
+explains Go’s origins and the motivation behind its design.
 
 ## Types
 
@@ -541,15 +532,15 @@ or for testing—without annotating the original types.
 Because there are no explicit relationships between types
 and interfaces, there is no type hierarchy to manage or discuss.
 
-It's possible to use these ideas to construct something analogous to
+It’s possible to use these ideas to construct something analogous to
 type-safe Unix pipes. For instance, see how `fmt.Fprintf`
 enables formatted printing to any output, not just a file, or how the
 `bufio` package can be completely separate from file I/O,
 or how the `image` packages generate compressed
 image files. All these ideas stem from a single interface
 ( `io.Writer`) representing a single method
-( `Write`). And that's only scratching the surface.
-Go's interfaces have a profound influence on how programs are structured.
+( `Write`). And that’s only scratching the surface.
+Go’s interfaces have a profound influence on how programs are structured.
 
 It takes some getting used to but this implicit style of type
 dependency is one of the most productive things about Go.
@@ -558,22 +549,22 @@ dependency is one of the most productive things about Go.
 
 We debated this issue but decided
 implementing `len` and friends as functions was fine in practice and
-didn't complicate questions about the interface (in the Go type sense)
+didn’t complicate questions about the interface (in the Go type sense)
 of basic types.
 
 ### Why does Go not support overloading of methods and operators?
 
-Method dispatch is simplified if it doesn't need to do type matching as well.
+Method dispatch is simplified if it doesn’t need to do type matching as well.
 Experience with other languages told us that having a variety of
 methods with the same name but different signatures was occasionally useful
 but that it could also be confusing and fragile in practice. Matching only by name
 and requiring consistency in the types was a major simplifying decision
-in Go's type system.
+in Go’s type system.
 
 Regarding operator overloading, it seems more a convenience than an absolute
 requirement. Again, things are simpler without it.
 
-### Why doesn't Go have "implements" declarations?
+### Why doesn’t Go have "implements" declarations?
 
 A Go type satisfies an interface by implementing the methods of that interface,
 nothing more. This property allows interfaces to be defined and used without
@@ -581,7 +572,7 @@ needing to modify existing code. It enables a kind of
 [structural typing](https://en.wikipedia.org/wiki/Structural_type_system) that
 promotes separation of concerns and improves code re-use, and makes it easier
 to build on patterns that emerge as the code develops.
-The semantics of interfaces is one of the main reasons for Go's nimble,
+The semantics of interfaces is one of the main reasons for Go’s nimble,
 lightweight feel.
 
 See the [question on type inheritance](#inheritance) for more detail.
@@ -599,11 +590,11 @@ var _ I = (*T)(nil) // Verify that *T implements I.
 
 ```
 
-If `T` (or `*T`, accordingly) doesn't implement
+If `T` (or `*T`, accordingly) doesn’t implement
 `I`, the mistake will be caught at compile time.
 
 If you wish the users of an interface to explicitly declare that they implement
-it, you can add a method with a descriptive name to the interface's method set.
+it, you can add a method with a descriptive name to the interface’s method set.
 For example:
 
 ```
@@ -616,7 +607,7 @@ type Fooer interface {
 
 A type must then implement the `ImplementsFooer` method to be a
 `Fooer`, clearly documenting the fact and announcing it in
-[go doc](/cmd/go/#hdr-Show_documentation_for_package_or_symbol)'s output.
+[go doc](/cmd/go/#hdr-Show_documentation_for_package_or_symbol)’s output.
 
 ```
 type Bar struct{}
@@ -625,11 +616,11 @@ func (b Bar) Foo() {}
 
 ```
 
-Most code doesn't make use of such constraints, since they limit the utility of
-the interface idea. Sometimes, though, they're necessary to resolve ambiguities
+Most code doesn’t make use of such constraints, since they limit the utility of
+the interface idea. Sometimes, though, they’re necessary to resolve ambiguities
 among similar interfaces.
 
-### Why doesn't type T satisfy the Equal interface?
+### Why doesn’t type T satisfy the Equal interface?
 
 Consider this simple interface to represent an object that can compare
 itself with another value:
@@ -655,7 +646,7 @@ The argument type of `T.Equal` is `T`,
 not literally the required type `Equaler`.
 
 In Go, the type system does not promote the argument of
-`Equal`; that is the programmer's responsibility, as
+`Equal`; that is the programmer’s responsibility, as
 illustrated by the type `T2`, which does implement
 `Equaler`:
 
@@ -665,7 +656,7 @@ func (t T2) Equal(u Equaler) bool { return t == u.(T2) }  // satisfies Equaler
 
 ```
 
-Even this isn't like other type systems, though, because in Go _any_
+Even this isn’t like other type systems, though, because in Go _any_
 type that satisfies `Equaler` could be passed as the
 argument to `T2.Equal`, and at run time we must
 check that the argument is of type `T2`.
@@ -685,11 +676,11 @@ func (t T3) Open() *os.File
 In Go, `T3` does not satisfy `Opener`,
 although it might in another language.
 
-While it is true that Go's type system does less for the programmer
+While it is true that Go’s type system does less for the programmer
 in such cases, the lack of subtyping makes the rules about
-interface satisfaction very easy to state: are the function's names
+interface satisfaction very easy to state: are the function’s names
 and signatures exactly those of the interface?
-Go's rule is also easy to implement efficiently.
+Go’s rule is also easy to implement efficiently.
 We feel these benefits offset the lack of
 automatic type promotion. Should Go one day adopt some form of polymorphic
 typing, we expect there would be a way to express the idea of these
@@ -730,7 +721,7 @@ var sx = ([]T2)(st1) // NOT OK
 In Go, types are closely tied to methods, in that every named type has
 a (possibly empty) method set.
 The general rule is that you can change the name of the type being
-converted (and thus possibly change its method set) but you can't
+converted (and thus possibly change its method set) but you can’t
 change the name (and method set) of elements of a composite type.
 Go requires you to be explicit about type conversions.
 
@@ -744,7 +735,7 @@ type `T`.
 For instance, if we store the `int` value 3 in an interface,
 the resulting interface value has, schematically,
 ( `T=int`, `V=3`).
-The value `V` is also known as the interface's
+The value `V` is also known as the interface’s
 _dynamic_ value,
 since a given interface variable might hold different values `V`
 (and corresponding types `T`)
@@ -790,14 +781,14 @@ func returnsError() error {
 
 ```
 
-It's a good idea for functions
+It’s a good idea for functions
 that return errors always to use the `error` type in
 their signature (as we did above) rather than a concrete type such
 as `*MyError`, to help guarantee the error is
 created correctly. As an example,
 [`os.Open`](/pkg/os/#Open)
 returns an `error` even though, if not `nil`,
-it's always of concrete type
+it’s always of concrete type
 [`*os.PathError`](/pkg/os/#PathError).
 
 Similar situations to those described here can arise whenever interfaces are used.
@@ -808,7 +799,7 @@ For more information, see
 
 ### Why are there no untagged unions, as in C?
 
-Untagged unions would violate Go's memory safety
+Untagged unions would violate Go’s memory safety
 guarantees.
 
 ### Why does Go not have variant types?
@@ -854,11 +845,11 @@ because `Value` implements the empty interface.
 In Go method types must match exactly, so `Value` does not
 implement `Copyable`.
 Go separates the notion of what a
-type does—its methods—from the type's implementation.
+type does—its methods—from the type’s implementation.
 If two methods return different types, they are not doing the same thing.
 Programmers who want covariant result types are often trying to
 express a type hierarchy through interfaces.
-In Go it's more natural to have a clean separation between interface
+In Go it’s more natural to have a clean separation between interface
 and implementation.
 
 ## Values
@@ -920,15 +911,15 @@ explores this topic in more detail.
 
 The same reason strings are: they are such a powerful and important data
 structure that providing one excellent implementation with syntactic support
-makes programming more pleasant. We believe that Go's implementation of maps
+makes programming more pleasant. We believe that Go’s implementation of maps
 is strong enough that it will serve for the vast majority of uses.
-If a specific application can benefit from a custom implementation, it's possible
+If a specific application can benefit from a custom implementation, it’s possible
 to write one but it will not be as convenient syntactically; this seems a reasonable tradeoff.
 
-### Why don't maps allow slices as keys?
+### Why don’t maps allow slices as keys?
 
 Map lookup requires an equality operator, which slices do not implement.
-They don't implement equality because equality is not well defined on such types;
+They don’t implement equality because equality is not well defined on such types;
 there are multiple considerations involving shallow vs. deep comparison, pointer vs.
 value comparison, how to deal with recursive types, and so on.
 We may revisit this issue—and implementing equality for slices
@@ -940,7 +931,7 @@ types can be used as map keys. Slices still do not have a definition of equality
 
 ### Why are maps, slices, and channels references while arrays are values?
 
-There's a lot of history on that topic. Early on, maps and channels
+There’s a lot of history on that topic. Early on, maps and channels
 were syntactically pointers and it was impossible to declare or use a
 non-pointer instance. Also, we struggled with how arrays should work.
 Eventually we decided that the strict separation of pointers and
@@ -982,7 +973,7 @@ The document [Effective Go](effective_go.html)
 contains some advice on these topics.
 More directly, the program `gofmt` is a pretty-printer
 whose purpose is to enforce layout rules; it replaces the usual
-compendium of dos and don'ts that allows interpretation.
+compendium of dos and don’ts that allows interpretation.
 All the Go code in the repository, and the vast majority in the
 open source world, has been run through `gofmt`.
 
@@ -1063,7 +1054,7 @@ Packages within modules should maintain backward compatibility as they evolve, f
 > the new package must be backwards compatible with the old package.
 
 The [Go 1 compatibility guidelines](/doc/go1compat.html) are a good reference here:
-don't remove exported names, encourage tagged composite literals, and so on.
+don’t remove exported names, encourage tagged composite literals, and so on.
 If different functionality is required, add a new name instead of changing an old one.
 
 Modules codify this with [semantic versioning](https://semver.org/) and semantic import versioning.
@@ -1086,7 +1077,7 @@ section](/doc/faq#methods_on_values_or_pointers) for a discussion of how this af
 
 Map and slice values behave like pointers: they are descriptors that
 contain pointers to the underlying map or slice data. Copying a map or
-slice value doesn't copy the data it points to. Copying an interface value
+slice value doesn’t copy the data it points to. Copying an interface value
 makes a copy of the thing stored in the interface value. If the interface
 value holds a struct, copying the interface value makes a copy of the
 struct. If the interface value holds a pointer, copying the interface value
@@ -1099,7 +1090,7 @@ as long as the optimizations do not change the semantics.
 ### When should I use a pointer to an interface?
 
 Almost never. Pointers to interface values arise only in rare, tricky situations involving
-disguising an interface value's type for delayed evaluation.
+disguising an interface value’s type for delayed evaluation.
 
 It is a common mistake to pass a pointer to an interface value
 to a function expecting an interface. The compiler will complain about this
@@ -1134,7 +1125,7 @@ fmt.Fprintf(&w, "hello, world\n") // Compile-time error.
 
 The one exception is that any value, even a pointer to an interface, can be assigned to
 a variable of empty interface type ( `interface{}`).
-Even so, it's almost certainly a mistake if the value is a pointer to an interface;
+Even so, it’s almost certainly a mistake if the value is a pointer to an interface;
 the result can be confusing.
 
 ### Should I define methods on values or pointers?
@@ -1163,7 +1154,7 @@ in a method the receiver must still be a pointer.)
 In the examples above, if `pointerMethod` modifies
 the fields of `s`,
 the caller will see those changes, but `valueMethod`
-is called with a copy of the caller's argument (that's the definition
+is called with a copy of the caller’s argument (that’s the definition
 of passing a value), so changes it makes will be invisible to the caller.
 
 By the way, in Java method receivers are always pointers,
@@ -1185,7 +1176,7 @@ For types such as basic types, slices, and small `structs`,
 a value receiver is very cheap so unless the semantics of the method
 requires a pointer, a value receiver is efficient and clear.
 
-### What's the difference between new and make?
+### What’s the difference between new and make?
 
 In short: `new` allocates memory, while `make` initializes
 the slice, map, and channel types.
@@ -1222,14 +1213,14 @@ Alternatively, the constant must be given a type with a conversion as in
 
 ### How do I know whether a variable is allocated on the heap or the stack?
 
-From a correctness standpoint, you don't need to know.
+From a correctness standpoint, you don’t need to know.
 Each variable in Go exists as long as there are references to it.
 The storage location chosen by the implementation is irrelevant to the
 semantics of the language.
 
 The storage location does have an effect on writing efficient programs.
 When possible, the Go compilers will allocate variables that are
-local to a function in that function's stack frame. However, if the
+local to a function in that function’s stack frame. However, if the
 compiler cannot prove that the variable is not referenced after the
 function returns, then the compiler must allocate the variable on the
 garbage-collected heap to avoid dangling pointer errors.
@@ -1281,7 +1272,7 @@ and its [associated article](https://blog.golang.org/2010/07/share-memory-by-com
 
 Large concurrent programs are likely to borrow from both these toolkits.
 
-### Why doesn't my program run faster with more CPUs?
+### Why doesn’t my program run faster with more CPUs?
 
 Whether a program runs faster with more CPUs depends on the problem
 it is solving.
@@ -1331,7 +1322,7 @@ I/O requests.
 can actually execute at once; arbitrarily more may be blocked
 in system calls.
 
-Go's goroutine scheduler is not as good as it needs to be, although it
+Go’s goroutine scheduler is not as good as it needs to be, although it
 has improved over time.
 In the future, it may better optimize its use of OS threads.
 For now, if there are performance issues,
@@ -1440,7 +1431,7 @@ func main() {
 ```
 
 One might mistakenly expect to see `a, b, c` as the output.
-What you'll probably see instead is `c, c, c`. This is because
+What you’ll probably see instead is `c, c, c`. This is because
 each iteration of the loop uses the same instance of the variable `v`, so
 each closure shares that single variable. When the closure runs, it prints the
 value of `v` at the time `fmt.Println` is executed,
@@ -1502,7 +1493,7 @@ if expr {
 
 ```
 
-The reason `?:` is absent from Go is that the language's designers
+The reason `?:` is absent from Go is that the language’s designers
 had seen the operation used too often to create impenetrably complex expressions.
 The `if-else` form, although longer,
 is unquestionably clearer.
@@ -1604,7 +1595,7 @@ Java `List<Integer>` and C++
 However, that option was not available for Go, because it leads to
 a syntactic problem: when parsing code within a function, such
 as `v := F<T>`, at the point of seeing
-the `<` it's ambiguous whether we are seeing an
+the `<` it’s ambiguous whether we are seeing an
 instantiation or an expression using the `<` operator.
 This is very difficult to resolve without type information.
 
@@ -1646,7 +1637,7 @@ For more details, including an example, see the
 Instead of methods with type parameters, use top-level functions with
 type parameters, or add the type parameters to the receiver type.
 
-### Why can't I use a more specific type for the receiver of a parameterized type?
+### Why can’t I use a more specific type for the receiver of a parameterized type?
 
 The method declarations of a generic type are written with a receiver
 that includes the type parameter names.
@@ -1677,7 +1668,7 @@ of `S`, which in this method is named `string`.
 Since the constraint of the type parameter is `any`,
 the `+` operator is not permitted.
 
-### Why can't the compiler infer the type argument in my program?
+### Why can’t the compiler infer the type argument in my program?
 
 There are many cases where a programmer can easily see what the type
 argument for a generic type or function must be, but the language does
@@ -1726,10 +1717,10 @@ and the [`go test`](/cmd/go/#hdr-Test_packages) subcommand for more details.
 
 ### Where is my favorite helper function for testing?
 
-Go's standard [`testing`](/pkg/testing/) package makes it easy to write unit tests, but it lacks
-features provided in other language's testing frameworks such as assertion functions.
+Go’s standard [`testing`](/pkg/testing/) package makes it easy to write unit tests, but it lacks
+features provided in other language’s testing frameworks such as assertion functions.
 An [earlier section](#assertions) of this document explained why Go
-doesn't have assertions, and
+doesn’t have assertions, and
 the same arguments apply to the use of `assert` in tests.
 Proper error handling means letting other tests run after one has failed, so
 that the person debugging the failure gets a complete picture of what is
@@ -1744,7 +1735,7 @@ test breaks.
 A related point is that testing frameworks tend to develop into mini-languages
 of their own, with conditionals and controls and printing mechanisms,
 but Go already has all those capabilities; why recreate them?
-We'd rather write tests in Go; it's one fewer language to learn and the
+We’d rather write tests in Go; it’s one fewer language to learn and the
 approach keeps the tests straightforward and easy to understand.
 
 If the amount of extra code required to write
@@ -1755,9 +1746,9 @@ The work to write a good test and good error messages will then be amortized ove
 test cases. The standard Go library is full of illustrative examples, such as in
 [the formatting tests for the `fmt` package](/src/fmt/fmt_test.go).
 
-### Why isn't _X_ in the standard library?
+### Why isn’t _X_ in the standard library?
 
-The standard library's purpose is to support the runtime, connect to
+The standard library’s purpose is to support the runtime, connect to
 the operating system, and provide key functionality that many Go
 programs require, such as formatted I/O and networking.
 It also contains elements important for web programming, including
@@ -1778,14 +1769,14 @@ and is subject to the Go
 preventing bug fixes from being available to users quickly.
 
 Most new code should live outside of the standard library and be accessible
-via the [`go` tool](/cmd/go/)'s
+via the [`go` tool](/cmd/go/)’s
 `go get` command.
 Such code can have its own maintainers, release cycle,
 and compatibility guarantees.
 Users can find packages and read their documentation at
 [godoc.org](https://godoc.org/).
 
-Although there are pieces in the standard library that don't really belong,
+Although there are pieces in the standard library that don’t really belong,
 such as `log/syslog`, we continue to maintain everything in the
 library because of the Go 1 compatibility promise.
 But we encourage most new code to live elsewhere.
@@ -1801,7 +1792,7 @@ The default compiler, `gc`, is included with the
 Go distribution as part of the support for the `go`
 command.
 `Gc` was originally written in C
-because of the difficulties of bootstrapping—you'd need a Go compiler to
+because of the difficulties of bootstrapping—you’d need a Go compiler to
 set up a Go environment.
 But things have advanced and since the Go 1.5 release the compiler has been
 a Go program.
@@ -1836,7 +1827,7 @@ standard GCC back end.
 
 Go turned out to be a fine language in which to implement a Go compiler,
 although that was not its original goal.
-Not being self-hosting from the beginning allowed Go's design to
+Not being self-hosting from the beginning allowed Go’s design to
 concentrate on its original use case, which was networked servers.
 Had we decided Go should compile itself early on, we might have
 ended up with a language targeted more for compiler construction,
@@ -1851,7 +1842,7 @@ and there is also a native [type checker](/pkg/go/types).
 Again due to bootstrapping issues, the run-time code was originally written mostly in C (with a
 tiny bit of assembler) but it has since been translated to Go
 (except for some assembler bits).
-`Gccgo`'s run-time support uses `glibc`.
+`Gccgo`’s run-time support uses `glibc`.
 The `gccgo` compiler implements goroutines using
 a technique called segmented stacks,
 supported by recent modifications to the gold linker.
@@ -1890,7 +1881,7 @@ variables or imports,
 trading short-term convenience for long-term build speed and
 program clarity.
 
-Still, when developing code, it's common to create these situations
+Still, when developing code, it’s common to create these situations
 temporarily and it can be annoying to have to edit them out before the
 program will compile.
 
@@ -1901,15 +1892,15 @@ because compiler options should not affect the semantics of the
 language and because the Go compiler does not report warnings, only
 errors that prevent compilation.
 
-There are two reasons for having no warnings. First, if it's worth
-complaining about, it's worth fixing in the code. (And if it's not
-worth fixing, it's not worth mentioning.) Second, having the compiler
+There are two reasons for having no warnings. First, if it’s worth
+complaining about, it’s worth fixing in the code. (And if it’s not
+worth fixing, it’s not worth mentioning.) Second, having the compiler
 generate warnings encourages the implementation to warn about weak
 cases that can make compilation noisy, masking real errors that
 _should_ be fixed.
 
-It's easy to address the situation, though. Use the blank identifier
-to let unused things persist while you're developing.
+It’s easy to address the situation, though. Use the blank identifier
+to let unused things persist while you’re developing.
 
 ```
 import "unused"
@@ -1936,9 +1927,9 @@ This program is easily connected to most editors to run automatically when a Go 
 
 This is a common occurrence, especially on Windows machines, and is almost always a false positive.
 Commercial virus scanning programs are often confused by the structure of Go binaries, which
-they don't see as often as those compiled from other languages.
+they don’t see as often as those compiled from other languages.
 
-If you've just installed the Go distribution and the system reports it is infected, that's certainly a mistake.
+If you’ve just installed the Go distribution and the system reports it is infected, that’s certainly a mistake.
 To be really thorough, you can verify the download by comparing the checksum with those on the
 [downloads page](/dl/).
 
@@ -1949,30 +1940,30 @@ Maybe in time virus scanners can learn to understand Go programs.
 
 ### Why does Go perform badly on benchmark X?
 
-One of Go's design goals is to approach the performance of C for comparable
+One of Go’s design goals is to approach the performance of C for comparable
 programs, yet on some benchmarks it does quite poorly, including several
 in [golang.org/x/exp/shootout](https://go.googlesource.com/exp/+/master/shootout/).
 The slowest depend on libraries for which versions of comparable performance
 are not available in Go.
 For instance, [pidigits.go](https://go.googlesource.com/exp/+/master/shootout/pidigits.go)
 depends on a multi-precision math package, and the C
-versions, unlike Go's, use [GMP](https://gmplib.org/) (which is
+versions, unlike Go’s, use [GMP](https://gmplib.org/) (which is
 written in optimized assembler).
 Benchmarks that depend on regular expressions
 ( [regex-dna.go](https://go.googlesource.com/exp/+/master/shootout/regex-dna.go),
-for instance) are essentially comparing Go's native [regexp package](/pkg/regexp) to
+for instance) are essentially comparing Go’s native [regexp package](/pkg/regexp) to
 mature, highly optimized regular expression libraries like PCRE.
 
 Benchmark games are won by extensive tuning and the Go versions of most
 of the benchmarks need attention. If you measure comparable C
 and Go programs
 ( [reverse-complement.go](https://go.googlesource.com/exp/+/master/shootout/reverse-complement.go)
-is one example), you'll see the two languages are much closer in raw performance
+is one example), you’ll see the two languages are much closer in raw performance
 than this suite would indicate.
 
 Still, there is room for improvement. The compilers are good but could be
 better, many libraries need major performance work, and the garbage collector
-isn't fast enough yet. (Even if it were, taking care not to generate unnecessary
+isn’t fast enough yet. (Even if it were, taking care not to generate unnecessary
 garbage can have a huge effect.)
 
 In any case, Go can often be very competitive.
@@ -1997,9 +1988,9 @@ descendants are notoriously difficult in this regard.
 
 ### Why are declarations backwards?
 
-They're only backwards if you're used to C. In C, the notion is that a
+They’re only backwards if you’re used to C. In C, the notion is that a
 variable is declared like an expression denoting its type, which is a
-nice idea, but the type and expression grammars don't mix very well and
+nice idea, but the type and expression grammars don’t mix very well and
 the results can be confusing; consider function pointers. Go mostly
 separates expression and type syntax and that simplifies things (using
 prefix `*` for pointers is an exception that proves the rule). In C,
@@ -2038,12 +2029,12 @@ is not just the expression grammar; keywords such as `func`
 and `chan` keep things clear.
 
 See the article about
-[Go's Declaration Syntax](/doc/articles/gos_declaration_syntax.html)
+[Go’s Declaration Syntax](/doc/articles/gos_declaration_syntax.html)
 for more details.
 
 ### Why is there no pointer arithmetic?
 
-Safety. Without pointer arithmetic it's possible to create a
+Safety. Without pointer arithmetic it’s possible to create a
 language that can never derive an illegal address that succeeds
 incorrectly. Compiler and hardware technology have advanced to the
 point where a loop using array indices can be as efficient as a loop
@@ -2063,7 +2054,7 @@ the postfix version is more traditional; insistence on prefix arose
 with the STL, a library for a language whose name contains, ironically, a
 postfix increment.
 
-### Why are there braces but no semicolons? And why can't I put the opening brace on the next line?
+### Why are there braces but no semicolons? And why can’t I put the opening brace on the next line?
 
 Go uses brace brackets for statement grouping, a syntax familiar to
 programmers who have worked with any language in the C family.
@@ -2081,15 +2072,15 @@ brace to live on the next line. We disagree. Since Go code is meant
 to be formatted automatically by
 [`gofmt`](/cmd/gofmt/),
 _some_ style must be chosen. That style may differ from what
-you've used in C or Java, but Go is a different language and
-`gofmt`'s style is as good as any other. More
+you’ve used in C or Java, but Go is a different language and
+`gofmt`’s style is as good as any other. More
 important—much more important—the advantages of a single,
 programmatically mandated format for all Go programs greatly outweigh
 any perceived disadvantages of the particular style.
-Note too that Go's style means that an interactive implementation of
+Note too that Go’s style means that an interactive implementation of
 Go can use the standard syntax one line at a time without special rules.
 
-### Why do garbage collection? Won't it be too expensive?
+### Why do garbage collection? Won’t it be too expensive?
 
 One of the biggest sources of bookkeeping in systems programs is
 managing the lifetimes of allocated objects.
@@ -2117,7 +2108,7 @@ itself a challenge, but meeting it once rather than in every
 program helps everyone.
 
 Finally, concurrency aside, garbage collection makes interfaces
-simpler because they don't need to specify how memory is managed across them.
+simpler because they don’t need to specify how memory is managed across them.
 
 This is not to say that the recent work in languages
 like Rust that bring new ideas to the problem of managing
@@ -2147,5 +2138,5 @@ is typical in garbage-collected languages. A careful programmer can reduce
 the garbage collection overhead dramatically by using the language well;
 see the article about
 [profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go's
+Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go’s
 profiling tools.
