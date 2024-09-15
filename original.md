@@ -258,7 +258,7 @@ available includes Emacs, Vim, VSCode, Atom, Eclipse, Sublime, IntelliJ
 Chances are your favorite environment is a productive one for
 programming in Go.
 
-Does Go support Google’s protocol buffers?
+### Does Go support Google’s protocol buffers?
 
 A separate open source project provides the necessary compiler plugin and library.
 It is available at
@@ -346,7 +346,7 @@ See the [language spec](/ref/spec) and the
 
 Go was intended as a language for writing server programs that would be
 easy to maintain over time.
-(See [this article](https://go.dev/talks/2012/splash.article) for more background.)
+(See [this article](/talks/2012/splash.article) for more background.)
 The design concentrated on things like scalability, readability, and
 concurrency.
 Polymorphic programming did not seem essential to the language’s
@@ -367,7 +367,7 @@ exceptional.
 
 Go takes a different approach. For plain error handling, Go’s multi-value
 returns make it easy to report an error without overloading the return value.
-[A canonical error type, coupled with Go’s other features](https://go.dev/blog/error-handling-and-go),
+[A canonical error type, coupled with Go’s other features](/doc/articles/error_handling.html),
 makes error handling pleasant but quite different
 from that in other languages.
 
@@ -564,7 +564,7 @@ in Go’s type system.
 Regarding operator overloading, it seems more a convenience than an absolute
 requirement. Again, things are simpler without it.
 
-### Why doesn’t Go have "implements" declarations?
+### Why doesn’t Go have “implements” declarations?
 
 A Go type satisfies an interface by implementing the methods of that interface,
 nothing more. This property allows interfaces to be defined and used without
@@ -682,9 +682,7 @@ interface satisfaction very easy to state: are the function’s names
 and signatures exactly those of the interface?
 Go’s rule is also easy to implement efficiently.
 We feel these benefits offset the lack of
-automatic type promotion. Should Go one day adopt some form of polymorphic
-typing, we expect there would be a way to express the idea of these
-examples and also have them be statically checked.
+automatic type promotion.
 
 ### Can I convert a \[\]T to an \[\]interface{}?
 
@@ -886,7 +884,7 @@ in the source code, and constant expressions involving the value keep
 precision beyond what a `float64` could hold.
 Only when the constant or constant expression is assigned to a
 variable—a memory location in the program—does
-it become a "computer" number with
+it become a “computer” number with
 the usual floating-point properties and precision.
 
 Also,
@@ -904,7 +902,7 @@ without complaint from the compiler because the ideal number `2`
 can be converted safely and accurately
 to a `float64` for the call to `math.Sqrt`.
 
-A blog post titled [Constants](https://blog.golang.org/constants)
+A blog post titled [Constants](/blog/constants)
 explores this topic in more detail.
 
 ### Why are maps built in?
@@ -965,7 +963,7 @@ subcommand that provides a textual interface to the same information.
 ### Is there a Go programming style guide?
 
 There is no explicit style guide, although there is certainly
-a recognizable "Go style".
+a recognizable “Go style”.
 
 Go has established conventions to guide decisions around
 naming, layout, and file organization.
@@ -992,7 +990,7 @@ See the document
 [Contributing to the Go project](contribute.html)
 for more information about how to proceed.
 
-### Why does "go get" use HTTPS when cloning a repository?
+### Why does “go get” use HTTPS when cloning a repository?
 
 Companies often permit outgoing traffic only on the standard TCP ports 80 (HTTP)
 and 443 (HTTPS), blocking outgoing traffic on other ports, including TCP port 9418
@@ -1006,7 +1004,7 @@ To authenticate over HTTPS, you can add a line
 to the `$HOME/.netrc` file that git consults:
 
 ```
-machine github.com login USERNAME password APIKEY
+machine github.com login *USERNAME* password *APIKEY*
 
 ```
 
@@ -1019,13 +1017,12 @@ add these lines to your `~/.gitconfig`:
 
 ```
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-
+    insteadOf = https://github.com/
 ```
 
-### How should I manage package versions using "go get"?
+### How should I manage package versions using “go get”?
 
-The Go toolchain has a built-in system for managing versioned sets of related packages, known as modules.
+The Go toolchain has a built-in system for managing versioned sets of related packages, known as _modules_.
 Modules were introduced in [Go 1.11](/doc/go1.11#modules) and have been ready for production use since [1.14](/doc/go1.14#introduction).
 
 To create a project using modules, run [`go mod init`](/ref/mod#go-mod-init).
@@ -1072,8 +1069,8 @@ thing being passed, as if there were an assignment statement assigning the
 value to the parameter. For instance, passing an `int` value
 to a function makes a copy of the `int`, and passing a pointer
 value makes a copy of the pointer, but not the data it points to.
-(See a [later\
-section](/doc/faq#methods_on_values_or_pointers) for a discussion of how this affects method receivers.)
+(See a [later section](/doc/faq#methods_on_values_or_pointers) 
+for a discussion of how this affects method receivers.)
 
 Map and slice values behave like pointers: they are descriptors that
 contain pointers to the underlying map or slice data. Copying a map or
@@ -1268,7 +1265,8 @@ That approach is summarized by the original
 Do not communicate by sharing memory. Instead, share memory by communicating.
 
 See the [Share Memory By Communicating](/doc/codewalk/sharemem/) code walk
-and its [associated article](https://blog.golang.org/2010/07/share-memory-by-communicating.html) for a detailed discussion of this concept.
+and its [associated article](/blog/share-memory-by-communicating)
+for a detailed discussion of this concept.
 
 Large concurrent programs are likely to borrow from both these toolkits.
 
@@ -1297,8 +1295,7 @@ goroutines; increasing the number of threads (CPUs) is more likely to slow it do
 to speed it up.
 
 For more detail on this topic see the talk entitled
-[Concurrency\
-is not Parallelism](https://blog.golang.org/2013/01/concurrency-is-not-parallelism.html).
+[Concurrency is not Parallelism](/blog/concurrency-is-not-parallelism).
 
 ### How can I control the number of CPUs?
 
@@ -1352,7 +1349,7 @@ clients would be unable to use more goroutines
 when serving a request.
 
 Moreover, experience with libraries such as those for graphics systems
-that require all processing to occur on the "main thread"
+that require all processing to occur on the “main thread”
 has shown how awkward and limiting the approach can be when
 deployed in a concurrent language.
 The very existence of a special thread or goroutine forces
@@ -1476,7 +1473,7 @@ each iteration, may have been a mistake in retrospect.
 It may be addressed in a later version but, for compatibility,
 cannot change in Go version 1.
 
-## Control flow
+## Control Flow
 
 ### Why does Go not have the `?:` operator?
 
@@ -1533,7 +1530,7 @@ The basic functionality in all languages is similar: it is possible to
 write types and functions using types that are specified later.
 That said, there are some differences.
 
-Java
+- Java
 
 In Java, the compiler checks generic types at compile time but removes
 the types at run time.
@@ -1555,7 +1552,7 @@ covariance and contravariance.
 Go does not have these concepts, which makes generic types in Go much
 simpler.
 
-C++
+- C++
 
 Traditionally C++ templates do not enforce any constraints on type
 arguments, although C++20 supports optional constraints via
@@ -1571,7 +1568,8 @@ In practice, all C++ compilers compile each template at the point
 where it is instantiated; as noted above, Go can and does use
 different approaches for different instantiations.
 
-Rust
+- Rust
+
 The Rust version of constraints is known as trait bounds.
 In Rust the association between a trait bound and a type must be
 defined explicitly, either in the crate that defines the trait bound
@@ -1581,11 +1579,14 @@ implicitly implement interface types.
 The Rust standard library defines standard traits for operations such as
 comparison or addition; the Go standard library does not, as these can
 be expressed in user code via interface types.
-Python
+
+- Python
+
 Python is not a statically typed language, so one can reasonably say
 that all Python functions are always generic by default: they can
 always be called with values of any type, and any type errors are
 detected at run time.
+
 
 ### Why does Go use square brackets for type parameter lists?
 
@@ -1774,7 +1775,7 @@ via the [`go` tool](/cmd/go/)’s
 Such code can have its own maintainers, release cycle,
 and compatibility guarantees.
 Users can find packages and read their documentation at
-[godoc.org](https://godoc.org/).
+[pkg.go.dev](https://pkg.go.dev/).
 
 Although there are pieces in the standard library that don’t really belong,
 such as `log/syslog`, we continue to maintain everything in the
@@ -1799,7 +1800,7 @@ a Go program.
 The compiler was converted from C to Go using automatic translation tools, as
 described in this [design document](/s/go13compiler)
 and [talk](/talks/2015/gogo.slide#1).
-Thus the compiler is now "self-hosting", which means we needed to face
+Thus the compiler is now “self-hosting”, which means we needed to face
 the bootstrapping problem.
 The solution is to have a working Go installation already in place,
 just as one normally has with a working C installation.
@@ -1857,7 +1858,7 @@ All Go binaries therefore include the Go
 runtime, along with the run-time type information necessary to support dynamic
 type checks, reflection, and even panic-time stack traces.
 
-A simple C "hello, world" program compiled and linked statically using
+A simple C “hello, world” program compiled and linked statically using
 gcc on Linux is around 750 kB, including an implementation of
 `printf`.
 An equivalent Go program using
@@ -1971,7 +1972,8 @@ There has been significant improvement in the performance of many programs
 as the language and tools have developed.
 See the blog post about
 [profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for an informative example.
+Go programs](/blog/profiling-go-programs) for an informative example.
+It’s quite old but still contains helpful information.
 
 ## Changes from C
 
@@ -2128,7 +2130,7 @@ in networked servers.
 Work continues to refine the algorithm, reduce overhead and
 latency further, and to explore new approaches.
 The 2018
-[ISMM keynote](https://blog.golang.org/ismmkeynote)
+[ISMM keynote](/blog/ismmkeynote)
 by Rick Hudson of the Go team
 describes the progress so far and suggests some future approaches.
 
@@ -2137,6 +2139,5 @@ considerable control over memory layout and allocation, much more than
 is typical in garbage-collected languages. A careful programmer can reduce
 the garbage collection overhead dramatically by using the language well;
 see the article about
-[profiling\
-Go programs](https://blog.golang.org/2011/06/profiling-go-programs.html) for a worked example, including a demonstration of Go’s
-profiling tools.
+[profiling Go programs](/blog/profiling-go-programs) for a worked example,
+including a demonstration of Go’s profiling tools.
