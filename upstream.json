@@ -1,0 +1,11 @@
+{
+  "targets": [
+    {
+      "name": "Go FAQ(README.md)",
+      "upstream_repo": "golang/website",
+      "upstream_path": "_content/doc/faq.md",
+      "translation": "README.md",
+      "baseline_sha": "04a44d2a150328bc5b1cdbb7624dddcf0f958533"
+    }
+  ]
+}
